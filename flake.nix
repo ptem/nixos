@@ -1,6 +1,6 @@
 # flake.nix
 {
-  description = "dotfiles";
+  description = "an accumulation point originating from a particle to which water vapor adheres and freezes";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

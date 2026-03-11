@@ -59,7 +59,6 @@
 
   # base system packages
   environment.systemPackages = with pkgs; [
-    firefox
     tailscale
     openssh
     protonvpn-gui
