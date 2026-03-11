@@ -37,4 +37,8 @@
     stable.xivlauncher
   ];
 
+  # Symlink so that ffxiv/dalamud can install on bdrive
+  home.file.".xlcore" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/mnt/bdrive/Games/.xlcore";
+  };
 }
