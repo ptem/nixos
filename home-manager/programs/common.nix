@@ -60,7 +60,7 @@
 
   home.shellAliases = {
     ll = "eza -l --icons --git -a";
-    ltree = "eza --tree --level=3 --icons";
+    ltree = "eza --tree --level=4 --icons";
 
     top = "btop";
   };
