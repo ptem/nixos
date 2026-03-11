@@ -12,6 +12,12 @@
     ../home.nix
   ];
 
+  home.shellAliases = {
+    nfu = "git add . && nix flake update && git add flake.lock";
+    nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#penrose";
+  };
+  
+
   # Packages specific to [bee], only on [nixos] host
   home.packages = with pkgs; [
 

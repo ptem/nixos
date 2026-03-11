@@ -15,7 +15,9 @@
 
 
   # Programs with dedicated Home Manager modules
+  programs.bash.enable = true;
 
+  
   # Nano                                                                                                                                                
   home.file.".nanorc".text = ''                                                                                                                                                                                                   
       set tabsize 2                                                                                                                                     
