@@ -98,14 +98,12 @@
       "credentials=/run/agenix/smb-secrets"
       "uid=1000"       
       "gid=100"        
-      "file_mode=0644"
-      "dir_mode=0755"
-      "noserverino"
-      "x-systemd.automount"
-      "noauto"
+
       "_netdev"
-      "user"
-      "x-gvfs-hide"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.mount-timeout=10s"
+      "noauto"
     ];
   };  
 
