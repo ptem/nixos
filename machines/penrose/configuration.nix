@@ -17,7 +17,7 @@
     ./hardware-configuration.nix 
   ];
 
-  age.secrets.smb = {
+  age.secrets.smb-secrets = {
     file = ../../secrets/smb-secrets.age;
   };
 
@@ -51,6 +51,7 @@
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
+  programs.nix-ld.enable = true;
 
   # ======================                                                                                                                              
   # Boot                                                                                                                                          
@@ -87,13 +88,23 @@
   # ======================                                                                                                                              
   # Storage                                                                                                                                          
   # ======================
-
+/*
+  # Bee Drive
+  fileSystems."/mnt/beedr" = {
+    device = "/dev/disk/by-uuid/b33a466e-6a95-4c26-bffe-b73406304270";
+    fsType = "ext4";
+    options = [ 
+      "nofail" 
+      "x-systemd.device-timeout=5s" 
+    ];
+  };
+*/
   # LAN-Mounted Navidrome share
   fileSystems."/mnt/music" = {
     device = "//proxmox-home/music"; # Tailscale nameres (if weird just use local ip) 
     fsType = "cifs";
     options = [
-      "credentials=/run/secrets/smb-secrets"
+      "credentials=/run/agenix/smb-secrets"
       "uid=1000"       
       "gid=100"        
       "file_mode=0644"
@@ -101,6 +112,9 @@
       "noserverino"
       "x-systemd.automount"
       "noauto"
+      "_netdev"
+      "user"
+      "x-gvfs-hide"
     ];
   };  
 

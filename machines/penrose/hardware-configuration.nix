@@ -25,9 +25,9 @@
     };
 
   fileSystems."/mnt/bdrive" = {
-    device = "/dev/disk/by-uuid/9684564C84562F4D";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" ];
+    device = "/dev/disk/by-uuid/b33a466e-6a95-4c26-bffe-b73406304270";
+    fsType = "ext4";
+    options = [ "nofail" "x-systemd.device-timeout=5s" ];
   };
 
   swapDevices =
