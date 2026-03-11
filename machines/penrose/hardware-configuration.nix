@@ -27,7 +27,7 @@
   fileSystems."/mnt/bdrive" = {
     device = "/dev/disk/by-uuid/b33a466e-6a95-4c26-bffe-b73406304270";
     fsType = "ext4";
-    options = [ "nofail" "x-systemd.device-timeout=5s" ];
+    options = [ "defaults" "nofail" "x-systemd.device-timeout=5s" "exec" ];
   };
 
   swapDevices =

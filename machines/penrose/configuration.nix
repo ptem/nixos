@@ -51,8 +51,11 @@
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
-  programs.nix-ld.enable = true;
-
+  # Compat for wine & ffxiv/dalamud.
+  programs.nix-ld = {
+    enable = true;
+  };
+  
   # ======================                                                                                                                              
   # Boot                                                                                                                                          
   # ======================
@@ -76,29 +79,17 @@
       libvdpau-va-gl
       
       # obs-studio-plugins.obs-vkcapture
-    ];    
-
-    extraPackages32 = with pkgs; [
-      pkgsi686Linux.obs-studio-plugins.obs-vkcapture
     ];
-  };
+  };  
+  
+  boot.kernelParams = [ "amdgpu.sg_display=0" ];
 
 
 
   # ======================                                                                                                                              
   # Storage                                                                                                                                          
   # ======================
-/*
-  # Bee Drive
-  fileSystems."/mnt/beedr" = {
-    device = "/dev/disk/by-uuid/b33a466e-6a95-4c26-bffe-b73406304270";
-    fsType = "ext4";
-    options = [ 
-      "nofail" 
-      "x-systemd.device-timeout=5s" 
-    ];
-  };
-*/
+
   # LAN-Mounted Navidrome share
   fileSystems."/mnt/music" = {
     device = "//proxmox-home/music"; # Tailscale nameres (if weird just use local ip) 
