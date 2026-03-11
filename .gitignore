@@ -1,0 +1,13 @@
+# NixOS
+result
+result-*
+
+.direnv/
+
+# OS Junk
+.DS_Store
+*.swp
+*~
+
+# Persistent state
+.worktree/
