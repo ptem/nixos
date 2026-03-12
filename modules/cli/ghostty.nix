@@ -34,6 +34,12 @@
         font-family = "IBM Plex Mono";
         font-style = "Text";
         font-size = 12;
+
+        # ~3/4 width of 1440p at 16:9 aspect ratio, assuming cells are 11x21px
+        window-width = 172;
+        window-height = 50;
+
+        window-show-tab-bar = "never";
                 
         
         # IBM Plex Mono Type
@@ -46,11 +52,10 @@
         
         
         # Window Management
-        # gtk-titlebar-style = true;
-        window-padding-x = 8;
+        window-padding-x = 2;
         window-padding-y = 8;
         window-decoration = true;
-      
+        scrollbar = "never";
         
         background-opacity = 0.78;
         background-blur = true;
