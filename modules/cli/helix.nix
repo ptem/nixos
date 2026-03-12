@@ -1,5 +1,5 @@
 # modules/cli/helix.nix
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   home = {
@@ -8,7 +8,7 @@
       defaultEditor = true;
 
       settings = {
-        theme = "catpuccin_mocha";
+        theme = "base16_transparent";
 
         editor = {
           line-number = "relative";
@@ -24,9 +24,28 @@
           */
         };
 
-        indent-guides.render = true;
+        indent-guides = {
+          render = true;
+          # character = "|";
+        };
+
         lsp.display-messages = true;
       };
+      
+      languages = {
+        language = [
+          {
+            name = "nix";
+            auto-format = true;
+            formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+          }
+        ];
+      };
+
+      extraPackages = with pkgs; [
+        nil
+        nixfmt
+      ];
     };
   };
 }

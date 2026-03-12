@@ -2,7 +2,6 @@
 
 {
   home = {
-
     # pywal16 packages + color methods
     home.packages = with pkgs; [
       (pywal16.overrideAttrs (oldAttrs: {
@@ -16,6 +15,11 @@
       
       colorz
     ];
+
+    # seems nice
+    home.shellAliases = {
+      theme-ghostty = "wal -i ~/.dotfiles/users/bee/wallpaper.jpg --saturate 0.45 --contrast 4.5 --cols16 \"darken\" --backend haishoku";
+    };
 
     programs.ghostty = {
       enable = true;
