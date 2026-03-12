@@ -3,7 +3,8 @@
   imports = [
     ./ghostty.nix
     ./git.nix
-    ./util.nix    
+    ./util.nix
+    ./helix.nix
   ];
 }
 

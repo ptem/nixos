@@ -24,7 +24,7 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/mnt/bdrive" = {
+  fileSystems."/mnt/b" = {
     device = "/dev/disk/by-uuid/b33a466e-6a95-4c26-bffe-b73406304270";
     fsType = "ext4";
     options = [ "defaults" "nofail" "x-systemd.device-timeout=5s" "exec" ];

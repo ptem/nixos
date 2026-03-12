@@ -1,5 +1,5 @@
 # modules/apps/gaming.nix
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   # graphics & wine compat

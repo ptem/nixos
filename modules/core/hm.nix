@@ -20,5 +20,5 @@
 
     # in case there's a funny conflict again between ~ configs and home-manager configs
     home-manager.backupFileExtension = "backup";
-  };
+  };  
 }

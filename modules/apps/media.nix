@@ -14,8 +14,8 @@
       # audio control
       pulsemixer
 
-      # images / manip
-      imv
+      # images   
+      qview
     ];
 
     # simple video player
@@ -23,6 +23,12 @@
       enable = true;
       defaultProfiles = ["high-quality"];
       scripts = [ pkgs.mpvScripts.mpris ];
+
+      config = {
+        vo = "gpu-next";
+        # gpu-context = "kitty"; # for ghostty
+        # gpu-api = "opengl";
+      };
     };
   };
 }

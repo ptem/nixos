@@ -10,6 +10,7 @@
     jq 
     pciutils 
     usbutils
+    bat # cat but good
   ];
 
   home = {
@@ -40,6 +41,9 @@
       nfu = "git add . && nix flake update && git add flake.lock";
       # swapped hardcoded 'penrose' for dynamic hostname evaluation
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
+
+      refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
+      
     };
 
     # nano
