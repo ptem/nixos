@@ -17,5 +17,8 @@
     # global home manager defaults
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
+
+    # in case there's a funny conflict again between ~ configs and home-manager configs
+    home-manager.backupFileExtension = "backup";
   };
 }

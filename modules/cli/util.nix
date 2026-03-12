@@ -4,7 +4,12 @@
 {
   # system-wide utils
   environment.systemPackages = with pkgs; [
-    git wget curl jq pciutils usbutils
+    git 
+    wget 
+    curl 
+    jq 
+    pciutils 
+    usbutils
   ];
 
   home = {

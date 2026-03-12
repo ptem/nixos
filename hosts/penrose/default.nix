@@ -11,12 +11,12 @@
     ../../modules/core/hm.nix
     ../../modules/core/smb.nix
 
-    # capabilities
+    # applications  
     ../../modules/audio.nix
-    ../../modules/apps/gaming.nix
-    ../../modules/apps/media.nix
-    ../../modules/cli/git.nix
-    ../../modules/cli/util.nix
+    ../../modules/apps
+    ../../modules/cli
+    
+    # desktop env
     ../../modules/desktop/plasma.nix
 
     # identity
