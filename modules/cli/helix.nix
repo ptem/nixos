@@ -1,5 +1,10 @@
 # modules/cli/helix.nix
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home = {
@@ -13,25 +18,22 @@
         editor = {
           line-number = "relative";
           mouse = true;
-          cursorline = true;
+          cursorline = false;
           color-modes = true;
-          /*
+          indent-heuristic = "hybrid";
+          trim-trailing-whitespace = true;
+          auto-pairs = true;
+
           cursor-shape = {
             insert = "bar";
             normal = "block";
-            select = "undereline";
+            # select = "underline";
           };
-          */
-        };
 
-        indent-guides = {
-          render = true;
-          # character = "|";
+          lsp.display-messages = true;
         };
-
-        lsp.display-messages = true;
       };
-      
+
       languages = {
         language = [
           {
@@ -49,4 +51,3 @@
     };
   };
 }
-
