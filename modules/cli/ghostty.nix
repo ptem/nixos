@@ -39,7 +39,7 @@
         window-width = 172;
         window-height = 50;
 
-        window-show-tab-bar = "never";
+        # window-show-tab-bar = "never";
                 
         
         # IBM Plex Mono Type

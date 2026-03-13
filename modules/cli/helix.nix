@@ -12,8 +12,14 @@
       enable = true;
       defaultEditor = true;
 
+      extraPackages = with pkgs; [
+        nil
+        nixfmt
+      ];
+
       settings = {
-        theme = "base16_transparent";
+        theme = "catppuccin_kitty";
+        #theme = "base16_transparent";
 
         editor = {
           line-number = "relative";
@@ -34,20 +40,46 @@
         };
       };
 
+      themes = {
+        catppuccin_kitty = {
+          inherits = "catppuccin_mocha";
+
+          "ui.background" = { };
+
+          "ui.statusline" = {
+            fg = "text";
+          };
+          "ui.statusline.inactive" = {
+            fg = "subtext0";
+          };
+          "ui.menu" = {
+            fg = "text";
+          };
+          "ui.popup" = {
+            fg = "text";
+          };
+          "ui.window" = {
+            fg = "crust";
+          };
+        };
+      };
+
       languages = {
         language = [
           {
             name = "nix";
             auto-format = true;
             formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+            language-servers = [ "nil" ];
           }
         ];
+
+        language-server.nil = {
+          command = "${pkgs.nil}/bin/nil";
+          config.nil.formatting.command = [ "nixfmt" ];
+        };
       };
 
-      extraPackages = with pkgs; [
-        nil
-        nixfmt
-      ];
     };
   };
 }

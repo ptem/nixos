@@ -1,10 +1,10 @@
 # modules/cli/default.nix
 {
   imports = [
-    ./ghostty.nix
+    ./kitty.nix
+    # ./ghostty.nix
     ./git.nix
     ./util.nix
     ./helix.nix
   ];
 }
-
