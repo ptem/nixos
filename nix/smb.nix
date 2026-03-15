@@ -1,5 +1,11 @@
-# modules/net/smb.nix
-{ pkgs, config, ... }:
+# nix/smb.nix
+{
+  pkgs,
+  config,
+  superusers,
+  users,
+  ...
+}:
 
 {
   environment.systemPackages = [ pkgs.cifs-utils ];
@@ -13,8 +19,8 @@
     fsType = "cifs";
     options = [
       "credentials=${config.age.secrets.smb-secrets.path}"
-      "uid=1000"
-      "gid=100"
+      "uid=1000" # TODO: below
+      "gid=100" # TODO: define local music storage group instead and apply to users.
       "_netdev"
       "x-systemd.automount"
       "x-systemd.idle-timeout=60"
@@ -31,8 +37,8 @@
     fsType = "cifs";
     options = [
       "credentials=${config.age.secrets.smb-secrets.path}"
-      "uid=1000"
-      "gid=100"
+      "uid=1000" # TODO: above
+      "gid=100" # TODO: above
       "_netdev"
       "x-systemd.automount"
       "x-systemd.idle-timeout=60"

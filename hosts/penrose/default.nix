@@ -3,6 +3,8 @@
   lib,
   pkgs,
   inputs,
+  users,
+  superusers,
   ...
 }:
 
@@ -11,22 +13,32 @@
     # hardware scan
     ./hardware-configuration.nix
 
-    # core system & bridge
-    ../../modules/core/system.nix
-    ../../modules/core/hm.nix
-    ../../modules/core/smb.nix
-
-    # applications
-    ../../modules/audio.nix
-    ../../modules/apps
-    ../../modules/cli
-
-    # desktop env
-    ../../modules/desktop/plasma.nix
-
-    # identity
-    ../../users/bee/default.nix
+    # system-level definitions
+    ../../nix/audio.nix
+    ../../nix/plasma.nix
+    ../../nix/smb.nix
+    ../../nix/system.nix
   ];
+
+  # graphics & wine compat
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau-va-gl
+    ];
+  };
+
+  programs.nix-ld.enable = true;
+
+  # steam as system service
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+  };
 
   # hostname & net overrides
   networking.hostName = "penrose";
@@ -63,6 +75,23 @@
       ];
     }
   ];
+
+  # Users of Penrose
+  users.users =
+    (lib.genAttrs users (name: {
+      isNormalUser = true;
+      extraGroups = [
+        "users"
+      ];
+    }))
+    // (lib.genAttrs superusers (name: {
+      isNormalUser = true;
+      extraGroups = [
+        "users"
+        "networkmanager"
+        "wheel"
+      ];
+    }));
 
   # state version
   system.stateVersion = "25.11";

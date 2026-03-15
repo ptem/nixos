@@ -1,5 +1,10 @@
-# modules/core/system.nix
-{ lib, pkgs, username, ... }:
+# nix/system.nix
+{
+  lib,
+  pkgs,
+  superusers,
+  ...
+}:
 
 {
   # nix package manager
@@ -7,10 +12,13 @@
 
   nix = {
     settings = {
-      trusted-users = [ username ];
+      trusted-users = superusers;
       download-buffer-size = 524288000; # 500mb
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     gc = {
       automatic = lib.mkDefault true;
@@ -35,6 +43,7 @@
   };
 
   # base networking & firewall
+  # TODO: move networking to standalone module
   networking.networkmanager.enable = true;
   services.tailscale.enable = true;
 
@@ -53,16 +62,30 @@
       PermitRootLogin = "prohibit-password";
     };
   };
-  
-  services.printing.enable = true;
+
+  services.printing.enable = true; # TODO: peripheral support, technically.
   services.ratbagd.enable = true;
 
   # base system packages
   environment.systemPackages = with pkgs; [
-    tailscale
-    openssh
-    protonvpn-gui
-    piper
-    libratbag
+    # tailscale
+    # openssh
+    protonvpn-gui # TODO: move to user or desktop env. not applicable for headless use.
+    piper # TODO: same thing.
+    libratbag # TODO: peripheral support, also move.
+
+    git
+    wget
+    curl
+    jq
+    pciutils
+    usbutils
+    bat # cat but good
+
+    ksnip # screenshot tool
+    slurp # select region tool
+
+    dysk # info on mnted disks
+
   ];
 }

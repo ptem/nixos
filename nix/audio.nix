@@ -1,4 +1,4 @@
-# modules/audio.nix
+# nix/audio.nix
 { ... }:
 
 {
@@ -10,7 +10,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    
+
     # TODO: enable when livecoding setup
     jack.enable = false;
   };

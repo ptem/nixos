@@ -1,20 +1,29 @@
 # users/bee/default.nix
-{ username, ... }:
+{
+  username,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  # nixos user account
-  users.users.${username} = {
-    isNormalUser = true;
-    description = username;
-    extraGroups = [ "networkmanager" "wheel" "users" ];
+  imports = [
 
-    # TODO: hashed pw w/ agenix?
-  };
+    #home manager (user-level) definitions
+    ../../hm/browsers.nix
+    ../../hm/gaming.nix
+    ../../hm/git.nix
+    ../../hm/helix.nix
+    ../../hm/kitty.nix
+    ../../hm/media.nix
+    ../../hm/util.nix
 
-  # home-manager
-  home-manager.users.${username} = {    
-    home.username = username;
-    home.homeDirectory = "/home/${username}";
-    home.stateVersion = "25.11";   
+  ];
+
+  home = {
+    username = "bee";
+    homeDirectory = "/home/bee";
+    stateVersion = "25.11";
   };
 }

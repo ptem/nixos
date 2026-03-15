@@ -1,4 +1,4 @@
-# modules/desktop/plasma.nix
+# nix/plasma.nix
 { pkgs, ... }:
 
 {
@@ -11,7 +11,7 @@
     kdePackages.breeze-gtk
 
     # Wayland compositor
-    kdePackages.kwin
+    # kdePackages.kwin -- included in plasma enable anyway
   ];
 
   # GTK things
