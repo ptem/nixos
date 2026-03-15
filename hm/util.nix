@@ -58,6 +58,8 @@
     nfu = "git add . && nix flake update && git add flake.lock";
     # swapped hardcoded 'penrose' for dynamic hostname evaluation
     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
+    hmr = "home-manager switch --flake ~/.dotfiles#bee@penrose";
+    rebuild = "nrs && hmr";
 
     refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
 
