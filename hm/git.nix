@@ -11,7 +11,7 @@
 
     settings.user = {
       name = "ptem";
-      email = "em@axolotlsin.space";
+      email = "13301888+ptem@users.noreply.github.com";
     };
 
     # TODO: config global init.defaultBranch <name>
