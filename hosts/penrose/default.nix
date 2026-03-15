@@ -32,13 +32,15 @@
 
   programs.nix-ld.enable = true;
 
-  # steam as system service
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-  };
+  /*
+    # steam as system service
+    programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    };
+  */
 
   # hostname & net overrides
   networking.hostName = "penrose";

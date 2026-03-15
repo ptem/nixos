@@ -11,6 +11,3 @@ result-*
 
 # Persistent state
 .worktree/
-
-# Don't commit secrets, even if they're public, please and ty.
-secrets/
