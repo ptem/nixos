@@ -18,6 +18,7 @@
     ../../sys/plasma.nix
     ../../sys/smb.nix
     ../../sys/system.nix
+    ../../sys/steam.nix
   ];
 
   # graphics & wine compat
