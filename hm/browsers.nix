@@ -1,4 +1,4 @@
-# modules/apps/browsers.nix
+# hm/browsers.nix
 { ... }:
 
 {

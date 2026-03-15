@@ -1,4 +1,4 @@
-# modules/apps/gaming.nix
+# hm/gaming.nix
 { pkgs, config, ... }:
 
 {

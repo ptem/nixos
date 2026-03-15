@@ -1,4 +1,4 @@
-# modules/apps/media.nix
+# hm/media.nix
 { pkgs, ... }:
 
 {
