@@ -1,4 +1,4 @@
-# modules/cli/helix.nix
+# hm/helix.nix
 {
   config,
   lib,
