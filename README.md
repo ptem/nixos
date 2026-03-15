@@ -4,7 +4,7 @@
 Hi! This is my NixOS configuration. I use NixOS as my primary daily computer as well
 as in several Proxmox LXCs (until I inevitably migrate that machine to just NixOS).
 
-_A word of caution_: I am an amateur at NixOS so there are almost certainly issues within. Do not outright copy as you may be setting yourself up for future issues. Please see the resources section below instead.
+_A word of caution_: I am an amateur at NixOS so there are almost certainly issues within. Do not outright copy as you may be setting yourself up for current and future issues. Please see the resources section below instead.
 
 # Structure
 
@@ -18,7 +18,7 @@ _A word of caution_: I am an amateur at NixOS so there are almost certainly issu
 
 - `overlays/` Package modifications. Defines custom package overlays to add, modify, or inject packages into the `nixpkgs` instance.
 
-- `secrets` Secret management (using [agenix](https://github.com/ryantm/agenix)). Contains files which define (public) keys and agenix-encrypted `.age` outputs that are decrypted at runtime. Private keys are not stored here. Still don't really like this on principle as using requires tracking changes, todo move to anything else.
+- `secrets/secrets.nix` Secret management (using [agenix](https://github.com/ryantm/agenix)). Contains files which define (public) keys and agenix-encrypted `.age` outputs that are decrypted at runtime. Private keys are not stored here. Still don't really like this on principle as using requires tracking changes, todo move to anything else.
 
 - `sys/` System modules. These are modules installed machine-wide on machines which opt in to them in `hosts/`.
 
