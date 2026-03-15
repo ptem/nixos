@@ -14,6 +14,7 @@
     ./hardware-configuration.nix
 
     # system-level definitions
+    ../../sys
     ../../sys/audio.nix
     ../../sys/plasma.nix
     ../../sys/smb.nix
