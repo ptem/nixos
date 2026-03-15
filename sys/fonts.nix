@@ -1,5 +1,5 @@
 # sys/fonts.nix
-{ ... }:
+{ pkgs, ... }:
 
 {
   environment.sessionVariables = {
