@@ -6,12 +6,12 @@ _disclaimer: I made this based on my own experience with my kb and my setup. It 
 
 - Obtain ducky firmware
 
-Ducky Firmware downloads: https://ducky.global/pages/download
+    - Ducky Firmware downloads: https://ducky.global/pages/download
 
 - Obtain dependencies and open a new shell with them.
 `nix-shell -p python3 cargo rustc pkg-config systemd libusb1 ilspycmd`
 
-_if you're not on nix just obtain these deps_
+    - _if you're not on nix just obtain these deps_
 
 - Decompile the updater
 `ilspycmd -p -o decompiled_project Ducky_One_3_V1.15.exe`
@@ -49,6 +49,6 @@ if match:
 
 - Flash
 
-The kb must be in ISP mode to flash the image. For the Ducky One 3, this is done by unplugging the kb, then holding D and L while plugging it in. The following command gives you a window to do so after execution before attempting to flash.
+    - The kb must be in ISP mode to flash the image. For the Ducky One 3, this is done by unplugging the kb, then holding D and L while plugging it in. The following command gives you a window to do so after execution before attempting to flash.
 
 `sudo sh -c "sleep 30; $HOME/.cargo/bin/nu-isp-cli 0416:3f00 flash Ducky_One_3_V1.15.bin"`
