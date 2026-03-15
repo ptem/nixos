@@ -9,6 +9,9 @@
 
     # breeze theme for GTK 2/3 apps
     kdePackages.breeze-gtk
+
+    # Wayland compositor
+    kdePackages.kwin
   ];
 
   # GTK things
@@ -37,7 +40,6 @@
     QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
   };
 
-
   # remove default plasma apps
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     gwenview
@@ -47,14 +49,13 @@
     kate
   ];
 
-
   # fonts
   console.font = "sun12x22";
 
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = false;
-    
+
     packages = with pkgs; [
       # Text (Sans + Serif + Mono)
       ibm-plex
@@ -62,7 +63,7 @@
       geist-font
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
-      
+
       # Symbols
       material-design-icons
       nerd-fonts.symbols-only
@@ -91,18 +92,29 @@
         rgba = "rgb";
         lcdfilter = "default";
       };
-            
+
       # generally nerd-fonts.font-name -> "FontName Nerd Font"
       # Each defaultFonts option takes a list
-      # First is highest prio, subsequent are fallbacks    
+      # First is highest prio, subsequent are fallbacks
       defaultFonts = {
-        sansSerif = [ "Geist" "Noto Sans Serif" ];
-        serif = [ "IBM Plex Serif" "Noto Serif" ];
-        monospace = [ "IBM Plex Mono Text" "JetBrainsMono Nerd Font" ];
-        emoji = [ "Twitter Color Emoji" "Noto Color Emoji" ];
+        sansSerif = [
+          "Geist"
+          "Noto Sans Serif"
+        ];
+        serif = [
+          "IBM Plex Serif"
+          "Noto Serif"
+        ];
+        monospace = [
+          "IBM Plex Mono Text"
+          "JetBrainsMono Nerd Font"
+        ];
+        emoji = [
+          "Twitter Color Emoji"
+          "Noto Color Emoji"
+        ];
       };
     };
 
-    
   };
 }

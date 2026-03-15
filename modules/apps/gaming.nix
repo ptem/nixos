@@ -11,7 +11,7 @@
       libvdpau-va-gl
     ];
   };
-  
+
   programs.nix-ld.enable = true;
 
   # steam as system service

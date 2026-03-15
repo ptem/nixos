@@ -4,36 +4,69 @@
 {
   # system-wide utils
   environment.systemPackages = with pkgs; [
-    git 
-    wget 
-    curl 
-    jq 
-    pciutils 
+    git
+    wget
+    curl
+    jq
+    pciutils
     usbutils
     bat # cat but good
+
+    ksnip # screenshot tool
+    slurp # select region tool
+
+    dysk # info on mnted disks
   ];
 
   home = {
     home.packages = with pkgs; [
       # sysinfo & fetch
-      fastfetch btop ncdu dust iotop iftop sysstat lm_sensors glow cowsay
-      
+      fastfetch
+      btop
+      ncdu
+      dust
+      iotop
+      iftop
+      sysstat
+      lm_sensors
+      glow
+      cowsay
+
       # file management
-      nnn zip unzip xz eza tree file lsof
-      
+      nnn
+      zip
+      unzip
+      xz
+      eza
+      tree
+      file
+      lsof
+
       # search
-      ripgrep fd fzf which strace ltrace
-      
+      ripgrep
+      fd
+      fzf
+      which
+      strace
+      ltrace
+
       # network
-      mtr iperf3 ldns nmap ipcalc socat ethtool
-      
+      mtr
+      iperf3
+      ldns
+      nmap
+      ipcalc
+      socat
+      ethtool
+
       # nix tools
-      nix-output-monitor yq-go
+      nix-output-monitor
+      yq-go
     ];
 
     # shell & aliases
     programs.bash.enable = true;
-    
+
     home.shellAliases = {
       ll = "eza -l --icons --git -a";
       ltree = "eza --tree --level=4 --icons";
@@ -43,7 +76,7 @@
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
 
       refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
-      
+
     };
 
     # nano

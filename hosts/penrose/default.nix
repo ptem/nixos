@@ -1,5 +1,10 @@
 # hosts/penrose/default.nix
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -11,11 +16,11 @@
     ../../modules/core/hm.nix
     ../../modules/core/smb.nix
 
-    # applications  
+    # applications
     ../../modules/audio.nix
     ../../modules/apps
     ../../modules/cli
-    
+
     # desktop env
     ../../modules/desktop/plasma.nix
 
@@ -29,7 +34,10 @@
 
   # static ssh listen
   services.openssh.listenAddresses = [
-    { addr = "100.93.133.61"; port = 22; }
+    {
+      addr = "100.93.133.61";
+      port = 22;
+    }
   ];
 
   # host-specific packages
@@ -43,6 +51,18 @@
 
   # hardware quirk. for deadlock.
   boot.kernelParams = [ "amdgpu.sg_display=0" ];
+
+  security.sudo.extraRules = [
+    {
+      groups = [ "wheel" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   # state version
   system.stateVersion = "25.11";
