@@ -11,12 +11,12 @@ _disclaimer: I made this based on my own experience with my kb and my setup. It 
 - Obtain dependencies and open a new shell with them.
 `nix-shell -p python3 cargo rustc pkg-config systemd libusb1 ilspycmd`
 
-    - _if you're not on nix just obtain these deps_
+    - _if you're not on nixos just obtain these deps_
 
 - Decompile the updater
 `ilspycmd -p -o decompiled_project Ducky_One_3_V1.15.exe`
 
-- Create & execution extraction script
+- Create & execute extraction script
 
 ```py
 # python3 extract.py
