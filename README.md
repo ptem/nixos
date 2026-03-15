@@ -28,6 +28,6 @@ _A word of caution_: I am an amateur at NixOS so there are almost certainly issu
 
 - [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/preface) by [Ryan Yin](https://github.com/ryan4yin)
 - [NixOS Manual](https://nixos.org/manual/nixos/stable/)
-- [Nix Language Referenece](https://nix.dev/tutorials/nix-language)
+- [Nix Language Reference](https://nix.dev/tutorials/nix-language)
 - [Home Manager Manual](https://nix-community.github.io/home-manager/index.xhtml#ch-introduction)
 - [Official NixOS Wiki](https://wiki.nixos.org/wiki/NixOS_Wiki)
