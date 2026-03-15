@@ -11,7 +11,7 @@
   environment.systemPackages = [ pkgs.cifs-utils ];
 
   age.secrets.smb-secrets = {
-    file = ../../secrets/smb-secrets.age;
+    file = ../secrets/smb-secrets.age;
   };
 
   fileSystems."/mnt/music" = {

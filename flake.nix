@@ -85,6 +85,8 @@
                 overlays.stable-packages
               ];
             }
+
+            { nixpkgs.config.allowUnfree = true; }
           ];
         };
 
@@ -97,19 +99,21 @@
         "bee@penrose" = home-manager.lib.homeManagerConfiguration {
 
           # requires pkgs instance
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+
+            overlays = [
+              # overlays.additions
+              overlays.modifications
+              overlays.stable-packages
+            ];
+          };
+          
           extraSpecialArgs = { inherit inputs navidromeServer; };
 
           modules = [
             ./users/bee/default.nix
-
-            {
-              nixpkgs.overlays = [
-                # overlays.additions
-                overlays.modifications
-                overlays.stable-packages
-              ];
-            }
           ];
 
         };

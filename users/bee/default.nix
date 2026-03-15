@@ -26,4 +26,8 @@
     homeDirectory = "/home/bee";
     stateVersion = "25.11";
   };
+
+  # use home manager
+  programs.home-manager.enable = true;
+
 }
