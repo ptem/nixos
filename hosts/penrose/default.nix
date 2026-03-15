@@ -14,10 +14,10 @@
     ./hardware-configuration.nix
 
     # system-level definitions
-    ../../nix/audio.nix
-    ../../nix/plasma.nix
-    ../../nix/smb.nix
-    ../../nix/system.nix
+    ../../sys/audio.nix
+    ../../sys/plasma.nix
+    ../../sys/smb.nix
+    ../../sys/system.nix
   ];
 
   # graphics & wine compat
