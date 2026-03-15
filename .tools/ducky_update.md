@@ -1,6 +1,5 @@
 # Ducky Keyboard Firmware Updater
 
-
 _disclaimer: I made this based on my own experience with my kb and my setup. It may or may not be extensible to yours, please use with caution._
 
 ## Instructions for Use
@@ -49,6 +48,7 @@ if match:
 ```
 
 - Flash
+
 The kb must be in ISP mode to flash the image. For the Ducky One 3, this is done by unplugging the kb, then holding D and L while plugging it in. The following command gives you a window to do so after execution before attempting to flash.
 
 `sudo sh -c "sleep 30; $HOME/.cargo/bin/nu-isp-cli 0416:3f00 flash Ducky_One_3_V1.15.bin"`
