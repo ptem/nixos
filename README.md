@@ -1,5 +1,9 @@
 
 # ❄️ 🐝 NixOS Configuration 🐝 ❄️
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/3f0d5416-319f-4da8-ae6c-bda86efcfe95" />
+
+<sup>_[bg source](https://twitter.com/apnoiac/status/1602532075617144832)_</sup>
+
 
 Hi! This is my NixOS configuration. I use NixOS as my primary daily computer as well
 as in several Proxmox LXCs (until I inevitably migrate that machine to just NixOS).
