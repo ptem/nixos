@@ -82,7 +82,6 @@
     usbutils
     bat # cat but good
 
-    ksnip # screenshot tool
     slurp # select region tool
 
     dysk # info on mnted disks
