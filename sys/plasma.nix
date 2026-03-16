@@ -24,6 +24,14 @@
     xkb.variant = "";
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      kdePackages.xdg-desktop-portal-kde
+    ];
+    config.common.default = "kde";
+  };
+
   # plasma 6
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
