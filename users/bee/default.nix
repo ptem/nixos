@@ -19,6 +19,7 @@
     ../../hm/media.nix
     ../../hm/util.nix
     ../../hm/fastfetch.nix
+    ../../hm/naviterm.nix
 
   ];
 
@@ -31,4 +32,5 @@
   # use home manager
   programs.home-manager.enable = true;
 
+  home.packages = [ pkgs.libsecret ];
 }

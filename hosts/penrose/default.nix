@@ -34,16 +34,6 @@
 
   programs.nix-ld.enable = true;
 
-  /*
-    # steam as system service
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      extraCompatPackages = with pkgs; [ proton-ge-bin ];
-    };
-  */
-
   # hostname & net overrides
   networking.hostName = "penrose";
   networking.wireless.enable = lib.mkForce false;
@@ -60,6 +50,11 @@
   environment.systemPackages = [
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+  programs.seahorse.enable = true;
+  programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
   # bootloader
   boot.loader.systemd-boot.enable = true;
