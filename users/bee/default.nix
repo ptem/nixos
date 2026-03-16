@@ -18,7 +18,7 @@
     ../../hm/kitty.nix
     ../../hm/media.nix
     ../../hm/util.nix
-    ../../hm/wallpaperengine.nix
+    ../../hm/fastfetch.nix
 
   ];
 

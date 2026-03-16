@@ -1,6 +1,8 @@
 # hm/wallpapermanager.nix
 { config, pkgs, ... }:
 
+# Wallpaper Engine kinda buggy and annoying on KDE Plasma.
+# Keeping around just in case.
 {
   services.linux-wallpaperengine =
     let
