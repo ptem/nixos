@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
 
     # consume the content
-    feishin
+    # feishin
     streamlink
     nicotine-plus
 
