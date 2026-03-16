@@ -109,7 +109,7 @@
               overlays.stable-packages
             ];
           };
-          
+
           extraSpecialArgs = { inherit inputs navidromeServer; };
 
           modules = [
