@@ -19,7 +19,10 @@
     ../../hm/media.nix
     ../../hm/util.nix
     ../../hm/fastfetch.nix
+
+    # music stuff
     ../../hm/naviterm.nix
+    ../../hm/beets.nix
 
   ];
 
