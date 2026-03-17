@@ -10,8 +10,8 @@
     # breeze theme for GTK 2/3 apps
     kdePackages.breeze-gtk
 
-    # Wayland compositor
-    # kdePackages.kwin -- included in plasma enable anyway
+    tesseract # OCR Engine
+
   ];
 
   # GTK things
@@ -30,6 +30,7 @@
       kdePackages.xdg-desktop-portal-kde
     ];
     config.common.default = "kde";
+    xdgOpenUsePortal = true;
   };
 
   # plasma 6
@@ -37,8 +38,7 @@
   services.desktopManager.plasma6.enable = true;
 
   environment.sessionVariables = {
-    # Monitor / Refresh Rate / Color
-    KWIN_DRM_DISABLE_TRIPLE_BUFFERING = "1";
+    # Monitor / Refresh Rate / Color  KWIN_DRM_DISABLE_TRIPLE_BUFFERING = "1";
     KWIN_DRM_NO_AMS = "1";
     KWIN_DRM_PREFER_COLOR_DEPTH = "30";
     AMD_DEBUG = "wsi_force_bgra8_unorm=0";
@@ -53,6 +53,9 @@
     elisa
     khelpcenter
     kate
+
+    # spectacle
+    # drkonqi
   ];
 
 }
