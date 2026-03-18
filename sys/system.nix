@@ -1,4 +1,4 @@
-# nix/system.nix
+# sys/system.nix
 {
   lib,
   pkgs,
@@ -80,9 +80,6 @@
     jq
     pciutils
     usbutils
-    bat # cat but good
-
-    slurp # select region tool
 
     dysk # info on mnted disks
 

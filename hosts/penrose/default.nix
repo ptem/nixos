@@ -16,21 +16,12 @@
     # system-level definitions
     ../../sys
     ../../sys/audio.nix
-    ../../sys/plasma.nix
     ../../sys/smb.nix
     ../../sys/system.nix
     ../../sys/steam.nix
-  ];
 
-  # graphics & wine compat
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-    ];
-  };
+    ../../sys/sway.nix
+  ];
 
   programs.nix-ld.enable = true;
 
@@ -51,9 +42,6 @@
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-  programs.seahorse.enable = true;
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
   # bootloader

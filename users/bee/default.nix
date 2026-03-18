@@ -24,6 +24,8 @@
     ../../hm/naviterm.nix
     ../../hm/beets.nix
 
+    # Sway
+    ../../hm/sway.nix
   ];
 
   home = {
