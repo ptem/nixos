@@ -4,51 +4,49 @@
 {
 
   home.packages = with pkgs; [
-    # sysinfo & fetch
-    fastfetch
-    btop
-    ncdu
-    dust
-    iotop
-    iftop
-    sysstat
-    lm_sensors
-    glow
-    cowsay
-
-    # file management
-    nnn
-    zip
+    # arch/env
     unzip
+    xdg-user-dirs
     xz
-    eza
-    tree
+    zip
+
+    # hw/bus
+    pciutils
+    usbutils
+
+    # sys/monitoring
+    btop
     file
     lsof
+    ncdu
 
-    # search
-    ripgrep
-    fd
+    # find shit
     fzf
-    which
-    strace
-    ltrace
+    ripgrep
+    eza
 
-    # network
-    mtr
-    iperf3
-    ldns
-    nmap
-    ipcalc
-    socat
-    ethtool
+    # debug/trace
+    ltrace # trace lib calls
+    strace # trace system calls
 
-    # nix tools
-    nix-output-monitor
-    yq-go
+    # Network & Data Processing
+    ldns # drill for dns shit
+    mtr # ping/tracert
+    yq-go # cli yaml processor
+    jq # cli json processor
 
-    # tool to help manage user dirs
-    xdg-user-dirs
+    # nix
+    nix-output-monitor # viz nix build logs + dep graphs
+
+    # docs/manpages
+    bat
+    bat-extras.batdiff
+    bat-extras.batgrep
+    bat-extras.batman
+    tldr
+
+    # fun/info
+    fastfetch
   ];
 
   # shell & aliases

@@ -68,20 +68,13 @@
 
   # base system packages
   environment.systemPackages = with pkgs; [
-    # tailscale
-    # openssh
     protonvpn-gui # TODO: move to user or desktop env. not applicable for headless use.
     piper # TODO: same thing.
     libratbag # TODO: peripheral support, also move.
 
+    # need frame one
     git
     wget
     curl
-    jq
-    pciutils
-    usbutils
-
-    dysk # info on mnted disks
-
   ];
 }
