@@ -1,11 +1,6 @@
 # hm/git.nix
-{ pkgs, ... }:
+{ ... }:
 {
-  home.packages = with pkgs; [
-    delta # git --diff
-    lazygit # lazy staging
-  ];
-
   programs.git = {
     enable = true;
 

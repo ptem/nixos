@@ -74,7 +74,6 @@
 
     # need frame one
     git
-    wget
     curl
   ];
 }

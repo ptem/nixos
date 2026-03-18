@@ -44,6 +44,7 @@
     bat-extras.batgrep
     bat-extras.batman
     tldr
+    delta
 
     # fun/info
     fastfetch
