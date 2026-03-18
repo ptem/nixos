@@ -8,6 +8,7 @@
 }:
 
 {
+
   imports = [
 
     #home manager (user-level) definitions
@@ -29,8 +30,8 @@
   ];
 
   home = {
-    username = "bee";
-    homeDirectory = "/home/bee";
+    username = username;
+    homeDirectory = "/home/${username}";
     stateVersion = "25.11";
   };
 

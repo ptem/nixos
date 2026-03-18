@@ -111,7 +111,10 @@
             ];
           };
 
-          extraSpecialArgs = { inherit inputs navidromeServer; };
+          extraSpecialArgs = {
+            inherit inputs navidromeServer;
+            username = "bee";
+          };
 
           modules = [
             ./users/bee/default.nix

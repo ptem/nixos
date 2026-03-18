@@ -34,7 +34,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.sway}/bin/sway";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.sway}/bin/sway";
         user = "greeter";
       };
     };
@@ -59,11 +59,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    grim
-    mako
-    slurp
     sway
-    wl-clipboard
   ];
 
   users.users.greeter = {

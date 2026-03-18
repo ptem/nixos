@@ -46,6 +46,9 @@
     # nix tools
     nix-output-monitor
     yq-go
+
+    # tool to help manage user dirs
+    xdg-user-dirs
   ];
 
   # shell & aliases
@@ -61,7 +64,9 @@
     hmr = "home-manager switch --flake ~/.dotfiles#bee@penrose";
     rebuild = "nrs && hmr";
 
-    refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
+    # refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
+
+    glurp = ''grim -g "$(slurp)" $(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png) | wl-copy'';
 
   };
 
