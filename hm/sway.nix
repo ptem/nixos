@@ -17,7 +17,7 @@
 
   # Waybar configuration is linked from ../cfg/waybar/config
   xdg.configFile."waybar/config".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/waybar/config"
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/waybar-config.jsonc"
   );
 
   wayland.windowManager.sway = {

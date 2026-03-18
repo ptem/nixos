@@ -13,6 +13,7 @@ output * bg /home/bee/.dotfiles/users/bee/wallpaper.png fill
 ###
 input * {
     xkb_layout "us"
+    xkb_numlock enabled
 }
 
 ###################################################################################################
@@ -24,6 +25,8 @@ input * {
 gaps inner 15
 gaps outer 7
 smart_gaps off
+
+default_border pixel
 
 ###################################################################################################
 
