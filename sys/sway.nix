@@ -34,7 +34,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user --asterisks --greeting '.remember our promise.' --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.sway}/bin/sway";
         user = "greeter";
       };
     };
@@ -66,6 +66,11 @@
     wl-clipboard
   ];
 
-  users.users.greeter = { };
+  users.users.greeter = {
+    extraGroups = [
+      "video"
+      "input"
+    ];
+  };
 
 }
