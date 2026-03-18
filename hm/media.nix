@@ -9,9 +9,12 @@
     # feishin
     streamlink
     nicotine-plus
+
+    # track management
     yt-dlp
     exiftool
     opustags
+    wrtag
 
     # audio
     pulsemixer
