@@ -42,15 +42,33 @@ in
       language = [
         {
           name = "nix";
+          scope = "source.nix";
           auto-format = true;
           formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
           language-servers = [ "nil" ];
+        }
+        {
+          name = "json";
+          scope = "source.json";
+          file-types = [ "json" ];
+          language-servers = [ "vscode-json-language-server" ];
+        }
+        {
+          name = "jsonc";
+          scope = "source.json";
+          file-types = [ "jsonc" ];
+          language-servers = [ "vscode-json-language-server" ];
         }
       ];
 
       language-server.nil = {
         command = "${pkgs.nil}/bin/nil";
         config.nil.formatting.command = [ "nixfmt" ];
+      };
+
+      language-server.vscode-json-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+        args = [ "--stdio" ];
       };
     };
 
