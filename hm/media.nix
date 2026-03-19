@@ -6,7 +6,7 @@
     ffmpeg
 
     # consume the content
-    # feishin
+    feishin
     streamlink
     nicotine-plus
 
@@ -17,7 +17,6 @@
     wrtag
 
     # audio
-    pulsemixer
     playerctl
 
     # images

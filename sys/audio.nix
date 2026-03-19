@@ -1,4 +1,4 @@
-# nix/audio.nix
+# sys/audio.nix
 { ... }:
 
 {
@@ -7,11 +7,15 @@
 
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    audio.enable = true; # use as primary sound server
+    jack.enable = false; # JACK audio emulation routes JACK requests thru pipewire.
 
-    # TODO: enable when livecoding setup
-    jack.enable = false;
+    alsa.enable = true; # routes audio from apps that output ALSA to pipewire
+    alsa.support32Bit = true;
+
+    pulse.enable = true; # PulseAudio compat layer. allows legacy apps to communicate w/ pipewire.
+    wireplumber.enable = true;
+
   };
+
 }
