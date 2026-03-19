@@ -10,6 +10,7 @@
 {
 
   imports = [
+    ../../hm/audio.nix
 
     #home manager (user-level) definitions
     ../../hm/browsers.nix
@@ -20,6 +21,7 @@
     ../../hm/media.nix
     ../../hm/util.nix
     ../../hm/fastfetch.nix
+    ../../hm/obs.nix
 
     # music stuff
     ../../hm/naviterm.nix
@@ -39,4 +41,10 @@
   programs.home-manager.enable = true;
 
   home.packages = [ pkgs.libsecret ];
+
+  # Nonspecific HM environment vars. No better place to put these rn.
+  home.sessionVariables = {
+    GOPATH = "$HOME/.go";
+  };
+
 }
