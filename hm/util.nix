@@ -65,7 +65,8 @@
 
     # refresh-plasma = "fc-cache -f && systemctl --user restart plasma-plasmashell.service";
 
-    glurp = ''grim -g "$(slurp)" $(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png) | wl-copy'';
+    # glurp = ''FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'';
+    glurp = ''FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE" && notify-send -t 3000 "Screenshot Taken" "Saved to $FILE and copied to clipboard"'';
 
   };
 

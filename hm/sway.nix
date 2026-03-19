@@ -32,8 +32,14 @@
     wofi # simple launcher menu program (replace with dmenu clone or something)
     swaylock # screen locking utility
     pamixer # pulseaudio cli mixer - https://github.com/cdemoulins/pamixer
+    swayidle # idle management daemon
+
     swaybg # wallpaper tool
+
     mako # notification daemon
+    libnotify # sends notifs to daemon
+
+    fuzzel # launcher/fzf
 
     # snip region + copy
     grim
@@ -44,27 +50,6 @@
   # wayland services
   programs.waybar.enable = true; # not swaybar
   services.mako.enable = true; # notification daemon
-
-  services.swayidle = {
-    enable = true;
-
-    events = {
-      before-sleep = "swaylock";
-      lock = "swaylock";
-    };
-
-    timeouts = [
-      {
-        timeout = 300;
-        command = "swaylock";
-      }
-      {
-        timeout = 600;
-        command = "swaymsg 'output * power off'";
-        resumeCommand = "swaymsg 'output * power on'";
-      }
-    ];
-  };
 
   programs.swaylock = {
     enable = true;

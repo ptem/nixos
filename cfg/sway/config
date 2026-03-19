@@ -30,6 +30,16 @@ default_border pixel
 
 ###################################################################################################
 
+# swayidle -- testing: watch -n 1 'pgrep -a swayidle'
+exec_always pkill -x swayidle
+exec_always sleep 0.5 && swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 600 'if pgrep -x swaylock; then swaymsg "output * power off"; fi' \
+    timeout 1800 'systemctl suspend' \
+    resume 'if pgrep -x swaylock; then swaymsg "output * power on"; fi'
+
+###################################################################################################
+
 ###
 ### Autoexec on start
 ###
@@ -77,7 +87,8 @@ bar {
     bindsym XF86AudioMute exec pamixer -t
 
     # Screenshots
-    bindsym $mod+Shift+s exec bash -c 'grim -g "$(slurp)" $(xdg-user-dir PICTURES)/grim/$(date +%s_grim.png) | wl-copy'
+    #bindsym $mod+Shift+s exec bash -c 'grim -g "$(slurp)" $(xdg-user-dir PICTURES)/grim/$(date +%s_grim.png) | wl-copy'
+    bindsym $mod+Shift+s exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
 
     # === System/Session ===
     # Mod + Enter      -- new terminal
