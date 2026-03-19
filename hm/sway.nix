@@ -10,29 +10,35 @@
   # environment.systemPackages = with pkgs; [];
   #
 
-  # Sway configuration is linked from ../cfg/sway/config
+  # Sway configuration is linked from ../cfg/swaw/config
   xdg.configFile."sway/config".source = lib.mkForce (
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/config"
   );
 
-  # Waybar configuration is linked from ../cfg/waybar/config
+  # Waybar configuration is linked from ../cfg/sway/waybar-config.jsonc
   xdg.configFile."waybar/config".source = lib.mkForce (
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/waybar-config.jsonc"
   );
 
+  # Waybar style.css is linked from ../cfg/sway/waybar-style.css
+  xdg.configFile."waybar/style.css".source = lib.mkForce (
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/waybar-style.css"
+  );
+
   wayland.windowManager.sway = {
     enable = true;
+    package = pkgs.swayfx;
     config = null; # Defined in ../cfg/sway
 
     # allow linking systemd services to sway session
     systemd.enable = true;
+
+    # HIGH VELOCITY RAYTRACING SHADOW CASTING RTX ON
+
   };
 
   home.packages = with pkgs; [
-    wofi # simple launcher menu program (replace with dmenu clone or something)
-    swaylock # screen locking utility
     pamixer # pulseaudio cli mixer - https://github.com/cdemoulins/pamixer
-    swayidle # idle management daemon
 
     swaybg # wallpaper tool
 
@@ -41,10 +47,22 @@
 
     fuzzel # launcher/fzf
 
-    # snip region + copy
+    # snip region
     grim
     slurp
+
+    # clipboard + history
     wl-clipboard
+    # wl-clipboard-history # TODO: not in nixpkgs. is just a bash script, can re-implement -- https://github.com/janza/wl-clipboard-history
+
+    # auto-included packages:
+    brightnessctl # currently not really useful. only has kb/mic lights.
+    # foot
+    # grim
+    pulseaudio
+    swayidle
+    swaylock
+    # wmenu
   ];
 
   # wayland services

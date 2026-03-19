@@ -7,6 +7,10 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    package = pkgs.swayfx;
+
+    # remove default packages. declared in hm/sway.nix
+    extraPackages = [ ];
   };
 
   # polkit required for sway
@@ -34,7 +38,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.sway}/bin/sway";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.swayfx}/bin/sway";
         user = "greeter";
       };
     };

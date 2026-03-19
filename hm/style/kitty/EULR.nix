@@ -28,10 +28,10 @@ let
 
 in
 {
-  background_opacity = "0.90";
+  background_opacity = "0.8";
   background = backgroundColor;
-  background_blur = 1;
-  background_tint = "0.3";
+  background_blur = 32;
+  background_tint = "0.0";
   dynamic_background_opacity = "yes";
 
   foreground = bright_white;
