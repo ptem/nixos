@@ -18,6 +18,7 @@
 
     # audio
     pulsemixer
+    playerctl
 
     # images
     qview
