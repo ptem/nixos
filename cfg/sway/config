@@ -72,8 +72,7 @@ bar {
     # Your preferred terminal emulator
     set $term kitty
     # Your preferred application launcher
-    set $menu wofi --show drun
-
+    set $menu fuzzel
 
 
 

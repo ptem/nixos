@@ -36,7 +36,7 @@
 
     swaybg # wallpaper tool
 
-    mako # notification daemon
+    dunst # notification daemon
     libnotify # sends notifs to daemon
 
     fuzzel # launcher/fzf
@@ -62,6 +62,23 @@
       indicator-radius = 120;
       indicator-thickness = 15;
     };
+  };
+
+  services.dunst = {
+    enable = true;
+
+    # iconTheme = {
+    #   name = "string";
+    #   package = pkgs.package;
+    #   size = 20;
+    # };
+
+    # settings = {
+    #   global.icon_path = "path/to/look/for/icons";
+    # };
+
+    # # sets dunst's `WAYLAND_DISPLAY` env var
+    # waylandDisplay = "sets {env} WAYLAND_DISPLAY var";
   };
 
 }
