@@ -6,7 +6,7 @@
 ###
 output "DP-2" mode 2560x1440@180Hz pos 0 0 adaptive_sync on
 output "DP-1" mode 2560x1440@180Hz pos 2560 0 adaptive_sync on
-output * bg /home/bee/.dotfiles/users/bee/wallpaper-1.png fill
+output * bg /home/bee/.dotfiles/style/assets/wallpaper-1.png fill
 
 ###
 ### Input Configuration
@@ -23,7 +23,8 @@ input * {
 ###
 
 gaps inner 15
-gaps outer 10
+gaps bottom 3
+gaps top 5
 smart_gaps off
 
 default_border pixel
@@ -53,11 +54,13 @@ layer_effects "waybar" {
 
 # swayidle -- testing: watch -n 1 'pgrep -a swayidle'
 exec_always pkill -x swayidle
-exec_always sleep 0.5 && swayidle -w \
-    timeout 300 'swaylock -f' \
-    timeout 400 'if pgrep -x swaylock; then swaymsg "output * power off"; fi' \
-    timeout 1800 'systemctl suspend' \
-    resume 'if pgrep -x swaylock; then swaymsg "output * power on"; fi'
+
+exec_always sleep 1 && swayidle -w \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 660 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 3600 'systemctl suspend' resume 'swaymsg "output * power on"'\
+         before-sleep 'swaylock -f -c 000000'
+
 
 ###################################################################################################
 
@@ -124,7 +127,7 @@ bar {
     bindsym $mod+d exec $menu
 
     # "Mod + Pause key"  -- lockscreen
-    bindsym $mod+Pause exec swaylock
+    bindsym $mod+Pause exec swaylock -f
 
     # Mod + Shift + Q  -- kill focused window
     bindsym $mod+Shift+q kill

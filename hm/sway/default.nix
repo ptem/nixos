@@ -6,23 +6,27 @@
   ...
 }:
 
+let
+  # select wallpaper in ..style/assets
+  wallpaper = "wallpaper-1.png";
+in
 {
   # environment.systemPackages = with pkgs; [];
   #
 
   # Sway configuration is linked from ../cfg/swaw/config
   xdg.configFile."sway/config".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/config"
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/config"
   );
 
   # Waybar configuration is linked from ../cfg/sway/waybar-config.jsonc
   xdg.configFile."waybar/config".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/waybar-config.jsonc"
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-config.jsonc"
   );
 
   # Waybar style.css is linked from ../cfg/sway/waybar-style.css
   xdg.configFile."waybar/style.css".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/cfg/sway/waybar-style.css"
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-style.css"
   );
 
   wayland.windowManager.sway = {
@@ -73,7 +77,7 @@
     enable = true;
 
     settings = {
-      image = "${../users/bee/wallpaper.png}"; # copies file to store
+      image = "${../../style/assets/${wallpaper}}"; # copies file to store
       scaling = "fill";
 
       # indicator geometry. bro i hate this shit sm
