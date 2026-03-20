@@ -39,6 +39,14 @@ in
 
     # HIGH VELOCITY RAYTRACING SHADOW CASTING RTX ON
 
+    config = {
+      seat = {
+        "*" = {
+          xcursor_theme = "${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}";
+        };
+      };
+    };
+
   };
 
   home.packages = with pkgs; [

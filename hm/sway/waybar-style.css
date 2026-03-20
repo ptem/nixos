@@ -1,8 +1,8 @@
-@define-color base00 #101010;
-@define-color base01 #202020;
-@define-color base02 #303030;
-@define-color base05 #E0E0E0;
-@define-color base07 #FFFFFF;
+/* @define-color base00 #101010; */
+/* @define-color base01 #202020; */
+/* @define-color base02 #303030; */
+/* @define-color base05 #E0E0E0; */
+/* @define-color base07 #FFFFFF; */
 
 * {
     font-size: 12px;
@@ -14,11 +14,11 @@
 }
 
 window#waybar {
-    background-color: alpha(@base00, 0.85);
-    color: @base05;
+    /* background-color: alpha(@base00, 0.85); */
+    /* color: @base05; */
     transition-property: background-color;
     transition-duration: .5s;
-    border-bottom: 2px solid @base02;
+    /* border-bottom: 2px solid @base02; */
     min-height: 5px;
 }
 
@@ -41,23 +41,23 @@ window#waybar {
 #workspaces button {
     padding: 0 8px;
     background-color: transparent;
-    color: @base05;
+    /* color: @base05; */
     transition: all 0.3s ease;
 }
 
 #workspaces button.focused {
     background-color: @base02;
-    color: @base07;
+    /* color: @base07; */
 }
 
 #workspaces button.urgent {
     background-color: @base07;
-    color: @base00;
+    /* color: @base00; */
     font-weight: bold;
 }
 
 #mode, #scratchpad {
-    background-color: @base02;
+    /* background-color: @base02; */
     padding: 0 10px;
     border-radius: 4px;
 }
@@ -78,7 +78,7 @@ window#waybar {
 }
 
 #pulseaudio.muted {
-    color: @base02;
+    /* color: @base02; */
 }
 
 #clock.datetime {
