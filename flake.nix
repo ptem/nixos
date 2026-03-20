@@ -75,7 +75,10 @@
         # Machine: Penrose
         penrose = nixpkgs.lib.nixosSystem {
           # Passes inputs and username to all system modules
-          specialArgs = { inherit inputs users superusers; };
+          specialArgs = {
+            inherit inputs users superusers;
+            isHM = false;
+          };
 
           modules = [
 
@@ -120,6 +123,7 @@
           extraSpecialArgs = {
             inherit inputs navidromeServer;
             username = "bee";
+            isHM = true;
           };
 
           modules = [

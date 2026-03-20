@@ -1,5 +1,10 @@
 # sys/stylix/default.nix
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  isHM ? false,
+  ...
+}:
 
 {
   stylix.enable = true;
@@ -20,4 +25,6 @@
   # Global auto-target:
   stylix.autoEnable = true;
 
+  # Stylix has trouble touching firefox-based browsers bc scope moment
+  stylix.targets."librewolf" = lib.mkIf isHM { enable = false; };
 }
