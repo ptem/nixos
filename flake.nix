@@ -79,11 +79,11 @@
 
           modules = [
 
-            # Main nixos configuration file
-            ./hosts/penrose/default.nix
-
             inputs.agenix.nixosModules.default
-            stylix.homeModules.stylix
+            stylix.nixosModules.stylix
+
+            ./hosts/penrose/default.nix
+            ./style/stylix/default.nix
 
             {
               nixpkgs.overlays = [
@@ -124,6 +124,8 @@
 
           modules = [
             ./users/bee/default.nix
+            stylix.homeModules.stylix
+            ./style/stylix/default.nix
           ];
 
         };
