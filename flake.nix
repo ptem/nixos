@@ -8,6 +8,11 @@
     agenix.url = "github:ryantm/agenix";
     naviterm.url = "gitlab:detoxify92/naviterm";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +24,7 @@
       self,
       nixpkgs,
       home-manager,
+      stylix,
       ...
     }:
     let
@@ -76,8 +82,8 @@
             # Main nixos configuration file
             ./hosts/penrose/default.nix
 
-            # Agenix slop
             inputs.agenix.nixosModules.default
+            stylix.homeModules.stylix
 
             {
               nixpkgs.overlays = [

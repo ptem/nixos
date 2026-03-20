@@ -1,6 +1,5 @@
 # users/bee/default.nix
 {
-  username,
   lib,
   pkgs,
   inputs,
@@ -15,8 +14,8 @@
   ];
 
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
+    username = "bee";
+    homeDirectory = "/home/bee";
     stateVersion = "25.11";
   };
 

@@ -3,14 +3,14 @@
   ...
 }:
 
-let
-  # My themes are stored in ~/.dotfiles/style/themes/[themeName]/[themeName]-kitty.nix
-  colorScheme = "EULR";
-in
+# let
+# My themes are stored in ~/.dotfiles/style/themes/[themeName]/[themeName]-kitty.nix
+# colorScheme = "EULR";
+# in
 {
   programs.kitty = {
     enable = true;
-    themeFile = "Later_This_Evening";
+    # themeFile = "Later_This_Evening";
 
     settings = {
       scrollback_pager = "hx -";
@@ -19,8 +19,8 @@ in
       placement_strategy = "center";
       remember_window_size = "no";
 
-    }
-    // import ../style/themes/${colorScheme}/${colorScheme}-kitty.nix;
+    };
+    # // import ../style/themes/${colorScheme}/${colorScheme}-kitty.nix;
 
     keybindings = {
       "ctrl+shift+enter" = "new_window";
@@ -30,20 +30,20 @@ in
     shellIntegration.enableBashIntegration = true;
     shellIntegration.enableZshIntegration = true;
 
-    font = {
-      # see font_features in extraConfig for styling.
-      name = "IBM Plex Mono";
-      size = 12;
-    };
+    # font = {
+    #   # see font_features in extraConfig for styling.
+    #   name = "IBM Plex Mono";
+    #   size = 12;
+    # };
 
-    extraConfig = ''
-      # ss02: single-story g; ss03: slashed 0
-      font_features IBMPlexMono +ss02 +ss03
-      font_features IBMPlexMono-Regular +ss02 +ss03
-      font_features IBMPlexMono-Italic +ss02 +ss03
-      font_features IBMPlexMono-Bold +ss02 +ss03
-      font_features IBMPlexMono-BoldItalic +ss02 +ss03
-    '';
+    # extraConfig = ''
+    #   # ss02: single-story g; ss03: slashed 0
+    #   font_features IBMPlexMono +ss02 +ss03
+    #   font_features IBMPlexMono-Regular +ss02 +ss03
+    #   font_features IBMPlexMono-Italic +ss02 +ss03
+    #   font_features IBMPlexMono-Bold +ss02 +ss03
+    #   font_features IBMPlexMono-BoldItalic +ss02 +ss03
+    # '';
   };
 
   programs.bash = {
@@ -57,6 +57,8 @@ in
       # ANSI 14 = Cyan
       # ANSI 11 = Gold
       export PS1="\[\e[38;5;8m\][\[\e[38;5;9m\]\u@\h\[\e[38;5;15m\]:\[\e[38;5;14m\]\w\[\e[38;5;8m\]]\[\e[38;5;11m\]\\$ \[\e[0m\]"
+
+      export HOME_MANAGER_CONFIG="/home/bee/.dotfiles/users/bee/default.nix"
     '';
   };
 

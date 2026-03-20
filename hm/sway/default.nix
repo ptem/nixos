@@ -32,7 +32,7 @@ in
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
-    config = null; # Defined in ../cfg/sway
+    # config = null; # Defined in ../cfg/sway
 
     # allow linking systemd services to sway session
     systemd.enable = true;
