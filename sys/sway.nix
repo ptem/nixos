@@ -34,11 +34,13 @@
   ];
 
   # greetd - login manager daemon
+  # must initialize as login shell and source ~/.profile + Home Manager sessions vars into  memory, hence execution `bash -l -c [sway]`
+  # some things [like cursors] don't seem to get respected if set later if this isn't done
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.swayfx}/bin/sway";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd \"bash -l -c ${pkgs.swayfx}/bin/sway\"";
         user = "greeter";
       };
     };
