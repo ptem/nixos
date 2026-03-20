@@ -48,8 +48,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # hardware quirk. for deadlock.
-  boot.kernelParams = [ "amdgpu.sg_display=0" ];
+  # rgb for mobo + ram
+  # boot.kernelModules = [
+  #   "i2c-dev"
+  #   "i2c-piix4"
+  # ];
+  boot.kernelParams = [
+    "amdgpu.sg_display=0" # hardware quirk. for deadlock.
+    # "acpi_enforce_resources=lax" # required for mobo to talk to i2c bus for pretty colors
+  ];
+
+  # openrgb service
+  services.hardware.openrgb.enable = true;
+  services.hardware.openrgb.motherboard = "amd";
 
   security.sudo.extraRules = [
     {
