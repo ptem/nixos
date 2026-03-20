@@ -5,7 +5,7 @@
 }:
 
 let
-  # my defined themes located in ~/.dotfiles/hm/style/helix/
+  # my defined themes located in ~/.dotfiles/style/themes/[themeName]/[themeName]-helix.nix
   themeName = "EULR";
 in
 {
@@ -45,19 +45,28 @@ in
           scope = "source.nix";
           auto-format = true;
           formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-          language-servers = [ "nil" ];
+          language-servers = [
+            "nil"
+            "uwu_colors"
+          ];
         }
         {
           name = "json";
           scope = "source.json";
           file-types = [ "json" ];
-          language-servers = [ "vscode-json-language-server" ];
+          language-servers = [
+            "vscode-json-language-server"
+            "uwu_colors"
+          ];
         }
         {
           name = "jsonc";
           scope = "source.json";
           file-types = [ "jsonc" ];
-          language-servers = [ "vscode-json-language-server" ];
+          language-servers = [
+            "vscode-json-language-server"
+            "uwu_colors"
+          ];
         }
       ];
 
@@ -70,9 +79,13 @@ in
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
         args = [ "--stdio" ];
       };
+
+      language-server.uwu_colors = {
+        command = "${pkgs.uwu-colors}/bin/uwu_colors";
+      };
     };
 
     settings.theme = themeName;
-    themes = import ./style/helix/${themeName}.nix;
+    themes = import ../style/themes/${themeName}/${themeName}-helix.nix;
   };
 }

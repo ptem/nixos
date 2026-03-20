@@ -10,25 +10,8 @@
 {
 
   imports = [
-    ../../hm/audio.nix
-
-    #home manager (user-level) definitions
-    ../../hm/browsers.nix
-    ../../hm/gaming.nix
-    ../../hm/git.nix
-    ../../hm/helix.nix
-    ../../hm/kitty.nix
-    ../../hm/media.nix
-    ../../hm/util.nix
-    ../../hm/fastfetch.nix
-    ../../hm/obs.nix
-
-    # music stuff
-    ../../hm/naviterm.nix
-    ../../hm/beets.nix
-
-    # Sway
-    ../../hm/sway.nix
+    # default hm imports
+    ../../hm
   ];
 
   home = {

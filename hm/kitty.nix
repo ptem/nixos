@@ -4,8 +4,8 @@
 }:
 
 let
-  # My themes are stored in ~/.dotfiles/hm/style
-  colorScheme = ./style/kitty/EULR.nix;
+  # My themes are stored in ~/.dotfiles/style/themes/[themeName]/[themeName]-kitty.nix
+  colorScheme = "EULR";
 in
 {
   programs.kitty = {
@@ -20,7 +20,7 @@ in
       remember_window_size = "no";
 
     }
-    // import colorScheme;
+    // import ../style/themes/${colorScheme}/${colorScheme}-kitty.nix;
 
     keybindings = {
       "ctrl+shift+enter" = "new_window";
