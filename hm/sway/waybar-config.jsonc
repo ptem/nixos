@@ -1,57 +1,38 @@
-// hx-language: jsonc
-// =============================================================================
-//
-// Waybar configuration
-//
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
-// =============================================================================
 {
-  // -------------------------------------------------------------------------
-  // Global configuration
-  // -------------------------------------------------------------------------
   "layer": "top",
   "position": "top",
-  "height": 9, // If height property not present, it'd be calculated dynamically
+  "height": 9,
   "width": 1800,
   "margin-top": 3,
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
     "sway/scratchpad"
-    // "custom/arrow10"
-    // "sway/mode"
   ],
   "modules-center": [
     "sway/window"
   ],
   "modules-right": [
-    // "custom/alsa", "network", "memory", "cpu", "temperature", "custom/keyboard-layout", "battery"
     "image#album-art",
     "mpris",
     "pulseaudio",
     "tray",
     "clock#datetime"
   ],
-  // -------------------------------------------------------------------------
-  // Modules
-  // -------------------------------------------------------------------------
   "clock#datetime": {
     "interval": 10,
-    //"format": "{:%H:%M:%S}",
     "format": "{:%I:%M %p  %e %b %Y}",
     "tooltip": false
   },
   "clock#date": {
     "interval": 20,
-    "format": "{:%e %b %Y}", // Icon: calendar-alt
-    //"tooltip-format": "{:%e %B %Y}"
+    "format": "{:%e %b %Y}",
     "tooltip": false
   },
   "cpu": {
     "interval": 5,
     "tooltip": false,
-    "format": "CPU {usage}%", // Icon: microchip
+    "format": "CPU {usage}%",
     "states": {
       "warning": 70,
       "critical": 90
@@ -59,16 +40,12 @@
   },
   "memory": {
     "interval": 5,
-    "format": "MEM {}%", // Icon: memory
+    "format": "MEM {}%",
     "states": {
       "warning": 70,
       "critical": 90
     }
   },
-  /* "sway/mode": {
-    "format": " {}",
-    "max-length": 50
-  }, */
   "sway/scratchpad": {
     "format": "{icon}  {count}",
     "show-empty": false,
@@ -83,24 +60,22 @@
     "format": "{}",
     "max-length": 120
   },
-  // TODO: this
   "sway/workspaces": {
     "all-outputs": false,
     "disable-scroll": true,
     "format": "{name}",
     "format-icons": {
-      "1:www": "龜", // Icon: firefox-browser
-      "2:mail": "", // Icon: mail
-      "3:editor": "", // Icon: code
-      "4:terminals": "", // Icon: terminal
-      "5:portal": "", // Icon: terminal
+      "1:www": "龜",
+      "2:mail": "",
+      "3:editor": "",
+      "4:terminals": "",
+      "5:portal": "",
       "urgent": "",
       "focused": "",
       "default": ""
     }
   },
   "pulseaudio": {
-    //"scroll-step": 1,
     "format": "{icon}   {volume}%",
     "format-bluetooth": "{icon}   {volume}%",
     "format-muted": "",
@@ -140,32 +115,9 @@
       "firefox"
     ]
   },
-  "temperature": {
-    "critical-threshold": 80,
-    "interval": 5,
-    "format": "{temperatureC}°C",
-    "format-icons": [
-      "", // Icon: temperature-empty
-      "", // Icon: temperature-quarter
-      "", // Icon: temperature-half
-      "", // Icon: temperature-three-quarters
-      "" // Icon: temperature-full
-    ],
-    "tooltip": true
-  },
   "custom/layout": {
-    //"format": "{}",
     "exec": "~/layout.sh"
   },
-  // "custom/alsa": {
-  //   "exec": "pamixer get Master | sed -nre 's/.*\\[off\\].*/ muted/p; s/.*\\[(.*%)\\].*/ \\1/p'",
-  //   "on-click": "pamixer set Master toggle; pkill -x -RTMIN+11 waybar",
-  //   "on-scroll-up": "pamixer set Master 1+; pkill -x -RTMIN+11 waybar",
-  //   "on-scroll-down": "pamixer set Master 1-; pkill -x -RTMIN+11 waybar",
-  //   "signal": 11,
-  //   "interval": 10,
-  //   "tooltip": false
-  // },
   "tray": {
     "icon-size": 16,
     "spacing": 5,

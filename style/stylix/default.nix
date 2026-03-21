@@ -7,17 +7,14 @@
 }:
 
 {
-  imports = lib.optional isHM {
-    stylix.targets.librewolf.enable = false;
-  };
 
   stylix.enable = true;
 
   # To set a Tinted Theming color scheme: [accepts other files/formats supported by mkSchemeAttrs]
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # Can override using stylix.override, anything that base16.nix accepts.
 
-  stylix.image = ../assets/wallpaper-1.png;
+  stylix.image = ../assets/wallpaper-splitrock.jpg;
   # if base16Scheme is undeclared, stylix will generate one from the wallpaper.
 
   stylix.polarity = "dark"; # dark/light
@@ -44,10 +41,19 @@
     };
   };
 
+  # will default to base cursors if there's a fuckup here.
+  # debug/runtime set: swaymsg seat "*" xcursor_theme catppuccin-mocha-green-cursors 24
   stylix.cursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
+    package = pkgs.everforest-cursors;
+    name = "everforest-cursors";
     size = 32;
+  };
+
+  stylix.opacity = {
+    applications = 0.9;
+    desktop = 0.6;
+    popups = 1.0;
+    terminal = 0.85;
   };
 
   # Targets - anything which can have colors, fonts, or wallpaper applied.
@@ -56,4 +62,14 @@
 
   # Global auto-target:
   stylix.autoEnable = true;
+
+  imports = lib.optional isHM {
+    stylix.targets.librewolf.enable = false;
+
+    stylix.targets.kitty = {
+      enable = true;
+    };
+
+  };
+
 }

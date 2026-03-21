@@ -6,58 +6,50 @@
   ...
 }:
 
-let
-  # select wallpaper in ..style/assets
-  wallpaper = "wallpaper-1.png";
-in
 {
-  # environment.systemPackages = with pkgs; [];
-  #
-
-  # Sway configuration is linked from ../cfg/swaw/config
-  xdg.configFile."sway/config".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/config"
-  );
 
   # Waybar configuration is linked from ../cfg/sway/waybar-config.jsonc
-  xdg.configFile."waybar/config".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-config.jsonc"
-  );
+  # xdg.configFile."waybar/config".source = lib.mkForce (
+  #  config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-config.jsonc"
+  # );
 
   # Waybar style.css is linked from ../cfg/sway/waybar-style.css
-  xdg.configFile."waybar/style.css".source = lib.mkForce (
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-style.css"
-  );
+  # xdg.configFile."waybar/style.css".source = lib.mkForce (
+  #  config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-style.css"
+  # );
 
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
-    # config = null; # Defined in ../cfg/sway
+    checkConfig = false;
 
-    # allow linking systemd services to sway session
     systemd.enable = true;
 
-    # HIGH VELOCITY RAYTRACING SHADOW CASTING RTX ON
+    extraConfig = builtins.readFile ./config;
 
     config = {
-      seat = {
-        "*" = {
-          xcursor_theme = "${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}";
-        };
-      };
+      keybindings = lib.mkForce { };
+      modes = lib.mkForce { };
+      bars = [ ];
     };
 
   };
 
+  programs.waybar = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
-    pamixer # pulseaudio cli mixer - https://github.com/cdemoulins/pamixer
+    pamixer # pulseaudiCo cli mixer - https://github.com/cdemoulins/pamixer
 
     swaybg # wallpaper tool
+    rubyPackages_4_0.gdk_pixbuf2
+    imagemagick
 
-    dunst # notification daemon
+    dunst # notification daemon # TODO: this
     libnotify # sends notifs to daemon
 
-    fuzzel # launcher/fzf
+    fuzzel # launcher/fzf # TODO: this
 
     # snip region
     grim
@@ -77,17 +69,10 @@ in
     # wmenu
   ];
 
-  # wayland services
-  programs.waybar.enable = true; # not swaybar
-  services.mako.enable = true; # notification daemon
-
   programs.swaylock = {
     enable = true;
 
     settings = {
-      image = "${../../style/assets/${wallpaper}}"; # copies file to store
-      scaling = "fill";
-
       # indicator geometry. bro i hate this shit sm
       indicator-radius = 120;
       indicator-thickness = 15;
@@ -96,19 +81,6 @@ in
 
   services.dunst = {
     enable = true;
-
-    # iconTheme = {
-    #   name = "string";
-    #   package = pkgs.package;
-    #   size = 20;
-    # };
-
-    # settings = {
-    #   global.icon_path = "path/to/look/for/icons";
-    # };
-
-    # # sets dunst's `WAYLAND_DISPLAY` env var
-    # waylandDisplay = "sets {env} WAYLAND_DISPLAY var";
   };
 
 }
