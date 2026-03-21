@@ -1,8 +1,10 @@
 
 # ❄️ 🐝 NixOS Configuration 🐝 ❄️
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/3f0d5416-319f-4da8-ae6c-bda86efcfe95" />
+<img width="2559" height="1440" alt="image" src="https://github.com/user-attachments/assets/d575200a-dc43-4e58-babb-c7a361a57520" />
 
-<sup>_[bg source](https://twitter.com/apnoiac/status/1602532075617144832)_</sup>
+
+
+<sup>_[bg source](https://wallpapersbin.com/wallpapers/original/63bf104ae74a7.jpg)_</sup>
 
 
 Hi! This is my NixOS configuration. I use NixOS as my primary daily computer as well
