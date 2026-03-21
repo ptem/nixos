@@ -68,6 +68,15 @@
             "uwu_colors"
           ];
         }
+        # {
+        #   name = "css";
+        #   scope = "source.css";
+        #   file-types = [ "css" ];
+        #   language-servers = [
+        #     "vscode-css-language-server"
+        #     "uwu_colors"
+        #   ];
+        # }
       ];
 
       language-server.nil = {
@@ -77,6 +86,11 @@
 
       language-server.vscode-json-language-server = {
         command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+        args = [ "--stdio" ];
+      };
+
+      language-server.vscode-css-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
         args = [ "--stdio" ];
       };
 
