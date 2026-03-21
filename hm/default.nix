@@ -10,6 +10,7 @@
     ./browsers.nix
     ./kitty.nix
     ./helix.nix
+    ./file.nix
 
     # all other
     ./social.nix

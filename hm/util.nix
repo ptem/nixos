@@ -54,6 +54,7 @@
   programs.bash.enable = true;
 
   home.shellAliases = {
+    d = "cd ~/.dotfiles";
     ll = "eza -l --icons --git -a";
     ltree = "eza --tree --level=4 --icons";
     top = "btop";
