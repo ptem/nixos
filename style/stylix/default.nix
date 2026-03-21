@@ -14,7 +14,7 @@
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # Can override using stylix.override, anything that base16.nix accepts.
 
-  stylix.image = ../assets/wallpaper-splitrock.jpg;
+  stylix.image = ../assets/wallpaper-mack.jpg;
   # if base16Scheme is undeclared, stylix will generate one from the wallpaper.
 
   stylix.polarity = "dark"; # dark/light
