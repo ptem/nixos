@@ -1,22 +1,15 @@
-# hm/sway.nix
+# hm/sway/default.nix
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 
 {
 
-  # Waybar configuration is linked from ../cfg/sway/waybar-config.jsonc
-  # xdg.configFile."waybar/config".source = lib.mkForce (
-  #  config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-config.jsonc"
-  # );
-
-  # Waybar style.css is linked from ../cfg/sway/waybar-style.css
-  # xdg.configFile."waybar/style.css".source = lib.mkForce (
-  #  config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hm/sway/waybar-style.css"
-  # );
+  imports = [
+    ./waybar.nix # waybar configuration
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -35,12 +28,8 @@
 
   };
 
-  programs.waybar = {
-    enable = true;
-  };
-
   home.packages = with pkgs; [
-    pamixer # pulseaudiCo cli mixer - https://github.com/cdemoulins/pamixer
+    pamixer # pulseaudio cli mixer - https://github.com/cdemoulins/pamixer
 
     swaybg # wallpaper tool
     rubyPackages_4_0.gdk_pixbuf2

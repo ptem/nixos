@@ -6,7 +6,7 @@ exit_code=$?
 
 
 if [[ $exit_code -ne 0 || "$status" == "Stopped" ]]; then
-    echo "<svg>/<svg>"
+    echo "/tmp/nothing.jpeg"
     exit 0
 fi
 

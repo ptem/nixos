@@ -1,92 +1,255 @@
-/* @define-color base00 #101010; */
-/* @define-color base01 #202020; */
-/* @define-color base02 #303030; */
-/* @define-color base05 #E0E0E0; */
-/* @define-color base07 #FFFFFF; */
-
+/* global settings */
 * {
-    font-size: 12px;
-    border: none;
-    border-radius: 0;
-    min-height: 0px;
-    margin: 0;
-    padding: 0;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  min-height: 0px;
+  margin: 0;
+  padding: 0;
 }
 
-window#waybar {
-    /* background-color: alpha(@base00, 0.85); */
-    /* color: @base05; */
-    transition-property: background-color;
-    transition-duration: .5s;
-    /* border-bottom: 2px solid @base02; */
-    min-height: 5px;
-}
+/* applied to bar */
+window#waybar {}
 
+
+/* cross-module styles */
 .modules-left,
 .modules-center,
 .modules-right {
-    margin: 2px 4px;
+  margin: 0px 10px;
+  /* border-style: solid; */
+  /* border-width: 1px; */
 }
 
+.modules-right {
+  padding-left: 10px;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: alpha(@base05, 0.3);
+}
+
+
+/*---------------------------------------------------------------------------*/
+/*          Left Modules                                                     */
+/*---------------------------------------------------------------------------*/
+
+
+/* left module styles applied to all elements */
 #workspaces,
 #mode,
-#scratchpad,
-#window,
-#pulseaudio,
-#tray,
-#clock {
-    margin: 0 4px;
+#scratchpad {
+  margin: 0 0px;
 }
+
+#mode,
+#scratchpad {
+  margin-left: 20px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background-color: @base0A;
+  transition: all 0.3s ease;
+}
+
+
+/* --- Workspaces --- */
 
 #workspaces button {
-    padding: 0 8px;
-    background-color: transparent;
-    /* color: @base05; */
-    transition: all 0.3s ease;
+  padding: 0px 5px;
+  transition: all 0.3s ease;
+  /* border-style: solid; */
+  /* border-width: 1px; */
 }
 
+
+#workspaces button.visible {}
+
+
 #workspaces button.focused {
-    background-color: @base02;
-    /* color: @base07; */
+  background-color: @base02;
 }
 
 #workspaces button.urgent {
-    background-color: @base07;
-    /* color: @base00; */
-    font-weight: bold;
+  background-color: @base0E;
+  font-weight: bold;
 }
 
-#mode, #scratchpad {
-    /* background-color: @base02; */
-    padding: 0 10px;
-    border-radius: 4px;
-}
+#workspaces button.persistent {}
+
+#workspaces button.empty {}
+
+#workspaces button.current_output {}
+
+#workspaces button#sway-workspace-namedguyhere {}
+
+
+/* --- Scratchpad --- */
+
+#scratchpad {}
+
+#scratchpad.empty {}
+
+
+/* --- Mode --- */
+
+#mode {}
+
+
+
+/*---------------------------------------------------------------------------*/
+/*          Center Modules                                                   */
+/*---------------------------------------------------------------------------*/
+
+/* The window module applies its additional css classes to the whole waybar rather than the module widgets
+   the whole waybar is an element named "window" and id "waybar". the window module is an element named "box" and id "window"
+   so apply formatting to window#waybar.<stylename> #window generally.
+   switching layouts does NOT change style unless focus changed.
+   sway does not provide events for layout switching, module does not poll.
+*/
 
 #window {
-    padding: 0 10px;
+  padding: 0 20px;
 }
+
+
+
+window#waybar {}
+
+window#waybar.empty {
+  background-color: alpha(@base00, 0.01);
+}
+
+window#waybar.empty #window {}
+
+window#waybar.solo #window {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar.floating #window {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar.tiled #window {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar.stacked #window {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar.tabbed #window {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar.code {}
+
+
+
+
+
+/*---------------------------------------------------------------------------*/
+/*          Right Modules                                                    */
+/*---------------------------------------------------------------------------*/
+
+/* right module styles applied to all elements */
+#image.album-art,
+#mpris,
+#pulseaudio,
+#tray,
+#clock {
+  margin: 0 5px;
+}
+
 
 #mpris,
 #pulseaudio,
 #clock {
-    padding: 0 10px;
-    margin-bottom: 3px;
+  padding: 0 0px;
+  margin-bottom: 0px;
 }
 
-#tray {
-    margin-bottom: 2px;
+
+/* --- MPRIS --- */
+
+#mpris {
+  padding-right: 5px;
 }
+
+#mpris.playing {}
+
+#mpris.paused {}
+
+#mpris.stopped {}
+
+/* player-specific */
+/* #mpris.feishin {} */
+
+
+/* --- PulseAudio --- */
+
+#pulseaudio {
+  padding-right: 10px;
+  border-width: 0 1px 0 0;
+  border-style: solid;
+  border-color: alpha(@base05, 0.3);
+}
+
+#pulseaudio.bluetooth {}
 
 #pulseaudio.muted {
-    /* color: @base02; */
+  padding-right: 10px;
+  padding-left: 0px;
+  opacity: 0.3;
+  border-color: alpha(@base05, 1);
 }
 
-#clock.datetime {
-    font-weight: bold;
+#pulseaudio.source-muted {}
+
+/* --- Tray --- */
+/* in beta: https://github.com/Alexays/Waybar/wiki/Module:-Tray */
+#tray {
+  /* background-color: alpha(@base01, 0.2); */
+  padding: 0px 10px;
+  border-width: 0 1px 0 1px;
+  border-style: solid;
+  border-color: alpha(@base05, 0.3);
 }
+
+/* context menu */
+#tray menu {}
+
+/* icons */
+#tray widget>image {}
+
+
+/* icons by status */
+#tray>.passive {
+  opacity: 0.4;
+}
+
+#tray>.active {
+  opacity: 1.0;
+}
+
+#tray>.needs-attention {
+  background-color: @base0E;
+  color: @base00;
+}
+
+
+/* --- Clock --- */
+
+#clock {
+  font-weight: normal;
+}
+
 
 #image.album-art {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
 }
