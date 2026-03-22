@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Script to manage workspaces in a dual-monitor setup.
+
+# Script to manage workspaces in a dual-monitor setup. Extended from Bruitosaure -- https://github.com/swaywm/sway/issues/8799
 # - Target workspaces on currently focused monitor or other monitor via -s flag (i.e. is swappy)
 # - Move focused window to target workspace with -m flag
 # - Shift focus from currently focused workspace to target workspace with -f flag.
