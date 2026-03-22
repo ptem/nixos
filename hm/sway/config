@@ -4,13 +4,14 @@
 ###
 ### Output Configuration
 ###
+
 output "DP-2" mode 2560x1440@180Hz pos 0 0 adaptive_sync on
 output "DP-1" mode 2560x1440@180Hz pos 2560 0 adaptive_sync on
-# output * bg /home/bee/.dotfiles/style/assets/wallpaper-1.png fill
 
 ###
 ### Input Configuration
 ###
+
 input * {
     xkb_layout "us"
     xkb_numlock enabled
@@ -19,7 +20,7 @@ input * {
 ###################################################################################################
 
 ###
-### Styling
+### Window Placement / Behavior
 ###
 
 gaps inner 10
@@ -34,13 +35,16 @@ default_border pixel
 # pwvucontrol should always start as floating
 for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 600, move position cursor, move left 225,  move down 30
 
+###################################################################################################
 
-# SwayFX
+###
+### SwayFX
+###
+
 blur enable
 blur_brightness 0.6
 corner_radius 2
 default_dim_inactive 0
-
 
 shadows enable
 
@@ -52,8 +56,22 @@ layer_effects "waybar" {
     corner_radius 5;
 }
 
+###################################################################################################
+
+###
+### Bars
+###
+
+bar {
+  swaybar_command waybar
+}
 
 ###################################################################################################
+
+###
+### Idle / Lockscreen management
+###
+
 
 # swayidle -- testing: watch -n 1 'pgrep -a swayidle'
 exec_always pkill -x swayidle
@@ -68,49 +86,67 @@ exec_always sleep 1 && swayidle -w \
 ###################################################################################################
 
 ###
-### Autoexec on start
+### Autoexec
 ###
-exec firefox
 
-exec wl-paste --watch cliphist store # cliphist watch history, required at session start.
+exec librewolf
 
+# cliphist watch history, required at session start.
+exec wl-paste --watch cliphist store
 
-bar {
-  swaybar_command waybar
-}
 
 ###################################################################################################
-#####################
-#####################
-#####################
 
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
+###
+### Base Workspaces
+###
+
+workspace "1-1" output DP-1
+workspace "1-2" output DP-1
+workspace "1-3" output DP-1
+workspace "2-1" output DP-2
+workspace "2-2" output DP-2
+workspace "2-3" output DP-2
+
+
+###################################################################################################
+
 # Read `man 5 sway` for a complete reference.
 
+###
 ### Variables
-#
-    # Logo key. Use Mod1 for Alt.
+###
+    # The Apps
+    set $term kitty
+    set $menu fuzzel
+
+    # Primary Modifier Key. Used for most commands. Mod4 = Win/Super
     set $mod Mod4
-    # Home row direction keys, like vim
+
+    # Secondary Modifier Key. Used for secondary display commands, primarily.
+    set $secmod Control
+
+    # "Amplifier" Key, because I can't call it modifier again. Used to modify commands either for alternative usages or for elevation (e.g. mod+q shouldn't close an app... but mod+amp+q? hell yeah)
+    set $amp Shift
+
+    # Alt. Used when idk what else to use or it just makes sense because windows moment.
+    set $alt Mod1
+
+    # "Switch" Key. Mostly for repeatable actions.
+    set $tab Tab
+
+    # vim motions
     set $left h
     set $down j
     set $up k
     set $right l
-    # Your preferred terminal emulator
-    set $term kitty
-    # Your preferred application launcher
-    set $menu fuzzel
 
 
+###
+### Key Bindings
+###
 
-
-### Key bindings
-
-
-    # Media keys
+    # Media
     bindsym XF86AudioRaiseVolume exec pamixer -i 5
     bindsym XF86AudioLowerVolume exec pamixer -d 5
     bindsym XF86AudioMute exec pamixer -t
@@ -119,21 +155,21 @@ bar {
     bindsym $mod+XF86AudioMute exec playerctl previous
 
     # Screenshots
-    #bindsym $mod+Shift+s exec bash -c 'grim -g "$(slurp)" $(xdg-user-dir PICTURES)/grim/$(date +%s_grim.png) | wl-copy'
-    bindsym $mod+Shift+s exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
+    bindsym $mod+$amp+s exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
+    bindsym Print exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
 
     # === System/Session ===
-    # Mod + Enter      -- new terminal
+    # Open Terminal
     bindsym $mod+Return exec $term
 
-    # Mod + D          -- application launcher
+    # Open Launcher
     bindsym $mod+d exec $menu
 
-    # "Mod + Pause key"  -- lockscreen
+    # Lock [Manual]
     bindsym $mod+Pause exec swaylock-plugin -f
 
     # Mod + Shift + Q  -- kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+$amp+q kill
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -141,40 +177,82 @@ bar {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-
-#
-# Moving around:
-#
-    # Move focus between monitors
-    bindsym $mod+Shift+Tab exec /home/bee/.dotfiles/hm/sway/swap-output-focus.sh
-
-
-    # move focus between last-focused item
-    bindsym $mod+Tab workspace back_and_forth
+    #bindsym $mod+Shift+Delete exec swaynag -t warning -m 'erm??' -B 'erm...' 'echo test'
 
 
 
-    # Move your focus around
+###
+### Workspaces
+###
+    # could have more but honestly ten is more than enough and going further is not ergonomic on kb anyway
+    # mod+ctrl+shift+number works best with my mouse since i only use a g600.
+
+    # generally:
+    #   mod         = display 1
+    #   mod+secmod  = display 2
+    #   +number     = workspace id
+    #   +amp        = "move" instead of "go to"
+
+    # Switch to workspace
+    bindsym $mod+1 workspace "1-1"
+    bindsym $mod+2 workspace "1-2"
+    bindsym $mod+3 workspace "1-3"
+    bindsym $mod+4 workspace "1-4"
+    bindsym $mod+5 workspace "1-5"
+
+    bindsym $mod+$secmod+1 workspace "2-1"
+    bindsym $mod+$secmod+2 workspace "2-2"
+    bindsym $mod+$secmod+3 workspace "2-3"
+    bindsym $mod+$secmod+4 workspace "2-4"
+    bindsym $mod+$secmod+5 workspace "2-5"
+
+
+    # Move focused container to workspace
+    bindsym $mod+$amp+1 move container to workspace "1-1"
+    bindsym $mod+$amp+2 move container to workspace "1-2"
+    bindsym $mod+$amp+3 move container to workspace "1-3"
+    bindsym $mod+$amp+4 move container to workspace "1-4"
+    bindsym $mod+$amp+5 move container to workspace "1-5"
+
+    bindsym $mod+$secmod+$amp+1 move container to workspace "2-1"
+    bindsym $mod+$secmod+$amp+2 move container to workspace "2-2"
+    bindsym $mod+$secmod+$amp+3 move container to workspace "2-3"
+    bindsym $mod+$secmod+$amp+4 move container to workspace "2-4"
+    bindsym $mod+$secmod+$amp+5 move container to workspace "2-5"
+
+
+###
+### Moving Focus:
+###
+    # Swap focus between monitors (cross-monitor alt-tab, ig)
+    bindsym $mod+tab exec /home/bee/.dotfiles/hm/sway/swap-output-focus.sh
+
+    # Swap focus between last-focused item. Item that was just focused becomes last-focused, naturally.
+    bindsym $alt+$tab workspace back_and_forth
+
+
+    # Movement that works within a workspace but also between monitors:
+    # Move focus around [arrows/vim], move focused window around by amplifying [$amp/shift]
     bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    bindsym $mod+$amp+$left move left
+    bindsym $mod+$amp+Left move left
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym $mod+$down focus down
+    bindsym $mod+Down focus down
+    bindsym $mod+$amp+$down move down
+    bindsym $mod+$amp+Down move down
+
+    bindsym $mod+$up focus up
+    bindsym $mod+Up focus up
+    bindsym $mod+$amp+$up move up
+    bindsym $mod+$amp+Up move up
+
+    bindsym $mod+$right focus right
+    bindsym $mod+Right focus right
+    bindsym $mod+$amp+$right move right
+    bindsym $mod+$amp+Right move right
+
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -183,44 +261,20 @@ bar {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-#
-# Workspaces:
-#
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
+
+
+
+###
+### Layout stuff:
+###
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
+    # bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
@@ -272,11 +326,5 @@ bar {
     }
     bindsym $mod+r mode "resize"
 
-
-#
-# Utilities:
-#
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
 
     include /etc/sway/config.d/*
