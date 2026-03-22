@@ -9,6 +9,7 @@
 
   imports = [
     ./waybar.nix # waybar configuration
+    ./fuzzel.nix
   ];
 
   wayland.windowManager.sway = {
@@ -54,17 +55,29 @@
     # grim
     pulseaudio
     swayidle
-    swaylock
+    # swaylock
+    # swaylock-plugin
     # wmenu
   ];
 
   programs.swaylock = {
     enable = true;
 
+    package = pkgs.swaylock-plugin;
+
     settings = {
-      # indicator geometry. bro i hate this shit sm
-      indicator-radius = 120;
-      indicator-thickness = 15;
+      show-failed-attempts = true;
+      # show-keyboard-layout = true;
+      indicator-caps-lock = true;
+      # font = "";
+      # font-size = 24;
+      indicator-idle-visible = false;
+      indicator-radius = 100;
+      indicator-thickness = 5;
+      # indicator-x-position = 0;
+      # indicator-y-position = 0;
+      line-uses-inside = true;
+      line-uses-ring = false;
     };
   };
 

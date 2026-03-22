@@ -15,7 +15,7 @@
 
   # polkit required for sway
   security.polkit.enable = true;
-  security.pam.services.swaylock = { };
+  security.pam.services.swaylock-plugin = { };
 
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.

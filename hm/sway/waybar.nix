@@ -16,10 +16,10 @@
   programs.waybar.settings = lib.mkForce [
     {
       layer = "top";
-      position = "top";
+      position = "bottom";
       height = 20;
-      width = 2300;
-      margin-top = 3;
+      width = 2500;
+      margin-bottom = 3;
 
       # output = [ "DP-1" "DP-2" ];
 
