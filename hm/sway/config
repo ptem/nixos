@@ -96,19 +96,6 @@ exec wl-paste --watch cliphist store
 
 
 ###################################################################################################
-
-###
-### Base Workspaces
-###
-
-workspace "1-1" output DP-1
-workspace "1-2" output DP-1
-workspace "1-3" output DP-1
-workspace "2-1" output DP-2
-workspace "2-2" output DP-2
-workspace "2-3" output DP-2
-
-
 ###################################################################################################
 
 # Read `man 5 sway` for a complete reference.
@@ -116,6 +103,11 @@ workspace "2-3" output DP-2
 ###
 ### Variables
 ###
+    # Outputs
+    set $outL DP-2
+    set $outR DP-1
+
+
     # The Apps
     set $term kitty
     set $menu fuzzel
@@ -140,6 +132,23 @@ workspace "2-3" output DP-2
     set $down j
     set $up k
     set $right l
+
+
+
+###
+### Base Workspaces
+###
+
+    workspace "1-1" output $outR
+    workspace "1-2" output $outR
+    workspace "1-3" output $outR
+    workspace "1-4" output $outR
+    workspace "1-5" output $outR
+    workspace "2-1" output $outL
+    workspace "2-2" output $outL
+    workspace "2-3" output $outL
+    workspace "2-4" output $outL
+    workspace "2-5" output $outL
 
 
 ###
@@ -184,51 +193,51 @@ workspace "2-3" output DP-2
 ###
 ### Workspaces
 ###
-    # could have more but honestly ten is more than enough and going further is not ergonomic on kb anyway
-    # mod+ctrl+shift+number works best with my mouse since i only use a g600.
 
     # generally:
-    #   mod         = display 1
-    #   mod+secmod  = display 2
-    #   +number     = workspace id
-    #   +amp        = "move" instead of "go to"
+    #   mod+#          = go to workspace on same monitor
+    #   mod+ctrl+#     = go to workspace on other monitor
+    #   mod+amp+#      = move window to workspace on same monitor
+    #   mod+ctrl+amp+# = move window to workspace on other monitor
 
-    # Switch to workspace
-    bindsym $mod+1 workspace "1-1"
-    bindsym $mod+2 workspace "1-2"
-    bindsym $mod+3 workspace "1-3"
-    bindsym $mod+4 workspace "1-4"
-    bindsym $mod+5 workspace "1-5"
-
-    bindsym $mod+$secmod+1 workspace "2-1"
-    bindsym $mod+$secmod+2 workspace "2-2"
-    bindsym $mod+$secmod+3 workspace "2-3"
-    bindsym $mod+$secmod+4 workspace "2-4"
-    bindsym $mod+$secmod+5 workspace "2-5"
-
-
-    # Move focused container to workspace
-    bindsym $mod+$amp+1 move container to workspace "1-1"
-    bindsym $mod+$amp+2 move container to workspace "1-2"
-    bindsym $mod+$amp+3 move container to workspace "1-3"
-    bindsym $mod+$amp+4 move container to workspace "1-4"
-    bindsym $mod+$amp+5 move container to workspace "1-5"
-
-    bindsym $mod+$secmod+$amp+1 move container to workspace "2-1"
-    bindsym $mod+$secmod+$amp+2 move container to workspace "2-2"
-    bindsym $mod+$secmod+$amp+3 move container to workspace "2-3"
-    bindsym $mod+$secmod+$amp+4 move container to workspace "2-4"
-    bindsym $mod+$secmod+$amp+5 move container to workspace "2-5"
-
-
-###
-### Moving Focus:
-###
     # Swap focus between monitors (cross-monitor alt-tab, ig)
     bindsym $mod+tab exec /home/bee/.dotfiles/hm/sway/swap-output-focus.sh
 
     # Swap focus between last-focused item. Item that was just focused becomes last-focused, naturally.
     bindsym $alt+$tab workspace back_and_forth
+
+    # SCRIPT - Move focused container to designated workspace
+    set $workman /home/bee/.dotfiles/hm/sway/workspace-manager.sh
+
+
+    # focus nth workspace on same monitor
+    bindsym $mod+1 exec $workman -w 1 -f
+    bindsym $mod+2 exec $workman -w 2 -f
+    bindsym $mod+3 exec $workman -w 3 -f
+    bindsym $mod+4 exec $workman -w 4 -f
+    bindsym $mod+5 exec $workman -w 5 -f
+
+    # focus nth workspace on opposite monitor
+    bindsym $mod+$secmod+1 exec $workman -w 1 -fs
+    bindsym $mod+$secmod+2 exec $workman -w 2 -fs
+    bindsym $mod+$secmod+3 exec $workman -w 3 -fs
+    bindsym $mod+$secmod+4 exec $workman -w 4 -fs
+    bindsym $mod+$secmod+5 exec $workman -w 5 -fs
+
+    # move window to nth workspace on same monitor
+    bindsym $mod+$amp+1 exec $workman -w 1 -m
+    bindsym $mod+$amp+2 exec $workman -w 2 -m
+    bindsym $mod+$amp+3 exec $workman -w 3 -m
+    bindsym $mod+$amp+4 exec $workman -w 4 -m
+    bindsym $mod+$amp+5 exec $workman -w 5 -m
+
+    # move window to nth workspace on opposite monitor
+    bindsym $mod+$secmod+$amp+1 exec $workman -w 1 -ms
+    bindsym $mod+$secmod+$amp+2 exec $workman -w 2 -ms
+    bindsym $mod+$secmod+$amp+3 exec $workman -w 3 -ms
+    bindsym $mod+$secmod+$amp+4 exec $workman -w 4 -ms
+    bindsym $mod+$secmod+$amp+5 exec $workman -w 5 -ms
+    # script also allows for move+focus but im ok with just this.
 
 
     # Movement that works within a workspace but also between monitors:
