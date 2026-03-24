@@ -29,4 +29,12 @@
     GOPATH = "$HOME/.go";
   };
 
+  # Compat / Defaults because idk, reasons. Things yelling.
+  gtk = {
+    # Default value of gtk.gtk4.theme has changed from config.gtk.theme to null
+    # Adopt new behavior:
+    gtk4.theme = null;
+
+  };
+
 }
