@@ -75,5 +75,6 @@
     # need frame one
     git
     curl
+    gnused
   ];
 }
