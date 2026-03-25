@@ -7,6 +7,20 @@
   home.packages = with pkgs; [
     stable.xivlauncher
 
+    # listen up emma
+    (prismlauncher.override {
+      # additionalPrograms = [ ffmpeg ];
+
+      # Java runtimes
+      jdks = [
+        zulu25
+        javaPackages.compiler.temurin-bin.jre-25
+        javaPackages.compiler.temurin-bin.jre-8
+        jre8
+      ];
+
+    })
+
   ];
 
 }
