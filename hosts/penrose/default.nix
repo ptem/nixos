@@ -20,6 +20,8 @@
     ../../sys/system.nix
     ../../sys/steam.nix
 
+    ../../sys/network.nix
+
     ../../sys/sway.nix
   ];
 
@@ -73,6 +75,10 @@
       ];
     }
   ];
+
+  security.sudo.extraConfig = ''
+    Defaults env_keep += "VOPONO_FORWARDED_PORT VOPONO_HOST_IP VOPONO_NS_IP VOPONO_NS DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY"
+  '';
 
   # Users of Penrose
   users.users =
