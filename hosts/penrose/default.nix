@@ -16,6 +16,8 @@
     # system-level definitions
     ../../sys
     ../../sys/audio.nix
+    ../../sys/peripheral.nix
+
     ../../sys/smb.nix
     ../../sys/system.nix
     ../../sys/steam.nix

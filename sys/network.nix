@@ -1,8 +1,6 @@
 # sys/network.nix
 {
   pkgs,
-  config,
-  lib,
   ...
 }:
 
@@ -38,7 +36,38 @@
       Restart = "on-failure";
       User = "root";
     };
-
   };
+
+  # base networking & firewall
+  networking.networkmanager.enable = true;
+
+  services.tailscale.enable = true;
+
+  networking.firewall = {
+    enable = true;
+    trustedInterfaces = [ "tailscale0" ];
+    checkReversePath = "loose";
+  };
+
+  # SSH
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "bee" ];
+    };
+  };
+
+  # SSH Tarpit to slow down malicious/automated SSH attempts
+  services.endlessh = {
+    enable = true;
+    port = 22;
+    openFirewall = true;
+  };
+
+  # SSH intrusion prevention
+  services.fail2ban.enable = true;
 
 }

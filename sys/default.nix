@@ -5,6 +5,7 @@
 {
   imports = [
     ./fonts.nix
+    ./peripheral.nix
   ];
 
 }

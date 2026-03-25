@@ -7,7 +7,6 @@
 }:
 
 {
-  # nix package manager
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -42,37 +41,8 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # base networking & firewall
-  # TODO: move networking to standalone module
-  networking.networkmanager.enable = true;
-  services.tailscale.enable = true;
-
-  networking.firewall = {
-    enable = true;
-    trustedInterfaces = [ "tailscale0" ];
-    checkReversePath = "loose";
-  };
-
-  # base services
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "prohibit-password";
-    };
-  };
-
-  services.printing.enable = true; # TODO: peripheral support, technically.
-  services.ratbagd.enable = true;
-
-  # base system packages
   environment.systemPackages = with pkgs; [
-    protonvpn-gui # TODO: move to user or desktop env. not applicable for headless use.
-    piper # TODO: same thing.
-    libratbag # TODO: peripheral support, also move.
-
-    # need frame one
+    # need these guys at first init
     git
     curl
     gnused
