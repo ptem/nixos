@@ -11,3 +11,7 @@ result-*
 
 # Persistent state
 .worktree/
+
+
+# sneakret
+secrets/vopono-nixos-penrose.conf
