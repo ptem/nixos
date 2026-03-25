@@ -46,7 +46,7 @@
     tldr
     delta
 
-    # fun/info
+    # idk
     fastfetch
   ];
 
