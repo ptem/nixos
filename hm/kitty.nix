@@ -20,8 +20,8 @@
         placement_strategy = "center";
         remember_window_size = "no";
 
-        background_opacity = lib.mkForce "0.8";
-        background_blur = lib.mkForce "64";
+        # background_opacity = lib.mkForce "0.5";
+        background_blur = lib.mkForce "0";
 
         # dynamic_background_opacity = lib.mkForce "yes";
 

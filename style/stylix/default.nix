@@ -2,19 +2,24 @@
 {
   pkgs,
   lib,
+  config,
   isHM ? false,
   ...
 }:
 
+let
+  theme = "everforest-dark-hard";
+  # theme = "darkmoss";
+in
 {
 
   stylix.enable = true;
 
   # To set a Tinted Theming color scheme: [accepts other files/formats supported by mkSchemeAttrs]
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
   # Can override using stylix.override, anything that base16.nix accepts.
 
-  stylix.image = ../assets/wallpaper-mack.jpg;
+  stylix.image = ../assets/arnaud-steckle-34RmaD-jVbY-unsplash.jpg;
   # if base16Scheme is undeclared, stylix will generate one from the wallpaper.
 
   stylix.polarity = "dark"; # dark/light
@@ -50,10 +55,10 @@
   };
 
   stylix.opacity = {
-    applications = 0.9;
-    desktop = 0.8;
+    applications = 0.5;
+    desktop = 0.5;
     popups = 0.8;
-    terminal = 0.85;
+    terminal = 0.5;
   };
 
   # Targets - anything which can have colors, fonts, or wallpaper applied.
