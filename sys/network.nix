@@ -46,6 +46,8 @@
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
+    allowedTCPPorts = [ 57218 ];
+    allowedUDPPorts = [ 57218 ];
     checkReversePath = "loose";
   };
 
@@ -58,13 +60,6 @@
       PermitRootLogin = "no";
       AllowUsers = [ "bee" ];
     };
-  };
-
-  # SSH Tarpit to slow down malicious/automated SSH attempts
-  services.endlessh = {
-    enable = true;
-    port = 22;
-    openFirewall = true;
   };
 
   # SSH intrusion prevention
