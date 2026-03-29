@@ -8,7 +8,7 @@
     # consume the content
     feishin
     streamlink
-    #nicotine-plus -- wrapped w/ vopono
+    nicotine-plus # alt: wrapped w/ vopono
 
     # track management
     yt-dlp
@@ -29,37 +29,37 @@
     # should probably abstract this a bit into its own script if I ever want to use it for other stuff, but this is fine for now.
     # doesn't currently update the port after launch if it inevitably changes, nor does it alert. should handle the latter.
     # nicotine definitely won't allow for the former, but perhaps another client or recotine can.
-    (symlinkJoin {
-      name = "nicotine-plus-vopono";
-      paths = [ nicotine-plus ];
-      buildInputs = [ makeWrapper ];
-      postBuild =
-        let
-          launcherScript = pkgs.writeShellScript "nicotine-vopono-launcher" ''
-            if [ -n "$VOPONO_FORWARDED_PORT" ]; then
-              echo -n "$VOPONO_FORWARDED_PORT" | ${pkgs.wl-clipboard}/bin/wl-copy
-              ${pkgs.libnotify}/bin/notify-send "Vopono" "Forwarded Port: $VOPONO_FORWARDED_PORT\n(Copied to Clipboard)"
+    # (symlinkJoin {
+    #   name = "nicotine-plus-vopono";
+    #   paths = [ nicotine-plus ];
+    #   buildInputs = [ makeWrapper ];
+    #   postBuild =
+    #     let
+    #       launcherScript = pkgs.writeShellScript "nicotine-vopono-launcher" ''
+    #         if [ -n "$VOPONO_FORWARDED_PORT" ]; then
+    #           echo -n "$VOPONO_FORWARDED_PORT" | ${pkgs.wl-clipboard}/bin/wl-copy
+    #           ${pkgs.libnotify}/bin/notify-send "Vopono" "Forwarded Port: $VOPONO_FORWARDED_PORT\n(Copied to Clipboard)"
 
-              CONFIG_FILE="$HOME/.config/nicotine/config"
-              if [ -f "$CONFIG_FILE" ]; then
-                ${pkgs.gnused}/bin/sed -i "s/^portrange = .*/portrange = ($VOPONO_FORWARDED_PORT, $VOPONO_FORWARDED_PORT)/" "$CONFIG_FILE"
-                ${pkgs.libnotify}/bin/notify-send "Vopono" "Wrote $VOPONO_FORWARDED_PORT to config."
-              fi
-            fi
+    #           CONFIG_FILE="$HOME/.config/nicotine/config"
+    #           if [ -f "$CONFIG_FILE" ]; then
+    #             ${pkgs.gnused}/bin/sed -i "s/^portrange = .*/portrange = ($VOPONO_FORWARDED_PORT, $VOPONO_FORWARDED_PORT)/" "$CONFIG_FILE"
+    #             ${pkgs.libnotify}/bin/notify-send "Vopono" "Wrote $VOPONO_FORWARDED_PORT to config."
+    #           fi
+    #         fi
 
-            exec ${nicotine-plus}/bin/nicotine
-          '';
-        in
-        ''
-          wrapProgram $out/bin/nicotine \
-            --run 'exec ${pkgs.vopono}/bin/vopono -v exec --provider custom \
-            --custom ${config.home.homeDirectory}/.dotfiles/secrets/vopono-nixos-penrose.conf \
-            --protocol wireguard \
-            --custom-port-forwarding protonvpn \
-            "${launcherScript}" \
-            >> ${config.home.homeDirectory}/.cache/vopono-nicotine.log 2>&1'
-        '';
-    })
+    #         exec ${nicotine-plus}/bin/nicotine
+    #       '';
+    #     in
+    #     ''
+    #       wrapProgram $out/bin/nicotine \
+    #         --run 'exec ${pkgs.vopono}/bin/vopono -v exec --provider custom \
+    #         --custom ${config.home.homeDirectory}/.dotfiles/secrets/vopono-nixos-penrose.conf \
+    #         --protocol wireguard \
+    #         --custom-port-forwarding protonvpn \
+    #         "${launcherScript}" \
+    #         >> ${config.home.homeDirectory}/.cache/vopono-nicotine.log 2>&1'
+    #     '';
+    # })
 
   ];
 
