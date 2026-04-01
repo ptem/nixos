@@ -29,6 +29,11 @@
     GOPATH = "$HOME/.go";
   };
 
+  home.sessionPath = [
+    "$HOME/.go"
+    "$HOME/.cargo/bin"
+  ];
+
   # Compat / Defaults because idk, reasons. Things yelling.
   gtk = {
     # Default value of gtk.gtk4.theme has changed from config.gtk.theme to null
