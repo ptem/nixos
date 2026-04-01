@@ -8,7 +8,8 @@
 }:
 
 let
-  theme = "everforest-dark-hard";
+  theme = "catppuccin-macchiato";
+  # theme = "everforest-dark-hard";
   # theme = "darkmoss";
 in
 {
@@ -26,18 +27,18 @@ in
 
   stylix.fonts = {
     serif = {
-      package = pkgs.ibm-plex;
-      name = "IBM Plex Serif";
+      package = pkgs.roboto-serif;
+      name = "Roboto Serif";
     };
 
     sansSerif = {
-      package = pkgs.geist-font;
-      name = "Geist";
+      package = pkgs.roboto;
+      name = "Roboto";
     };
 
     monospace = {
-      package = pkgs.ibm-plex;
-      name = "IBM Plex Mono Text";
+      package = pkgs.jetbrains-mono;
+      name = "JetBrains Mono";
     };
 
     emoji = {
