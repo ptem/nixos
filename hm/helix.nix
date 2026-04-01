@@ -27,6 +27,7 @@
         indent-heuristic = "hybrid";
         trim-trailing-whitespace = true;
         auto-pairs = true;
+        # rulers = [ 100 ];
 
         cursor-shape = {
           insert = "bar";
@@ -35,6 +36,7 @@
         };
 
         lsp.display-messages = true;
+        lsp.display-inlay-hints = true;
       };
     };
 
@@ -48,6 +50,14 @@
           language-servers = [
             "nil"
             "uwu_colors"
+          ];
+        }
+        {
+          name = "rust";
+          auto-format = true;
+          formatter.command = "${pkgs.rustfmt}/bin/rustfmt";
+          language-servers = [
+            "rust-analyzer"
           ];
         }
         {
@@ -68,20 +78,31 @@
             "uwu_colors"
           ];
         }
-        # {
-        #   name = "css";
-        #   scope = "source.css";
-        #   file-types = [ "css" ];
-        #   language-servers = [
-        #     "vscode-css-language-server"
-        #     "uwu_colors"
-        #   ];
-        # }
       ];
 
       language-server.nil = {
         command = "${pkgs.nil}/bin/nil";
         config.nil.formatting.command = [ "nixfmt" ];
+      };
+
+      language-server.rust-analyzer = {
+        command = "rust-analyzer";
+        config = {
+          cargo = {
+            buildScripts.enable = true;
+          };
+          check = {
+            command = "clippy";
+          };
+          inlayHints = {
+            bindingModeHints.enable = false;
+            closingBraceHints.minLines = 10;
+            closureReturnTypeHints.enable = "with_block";
+            disciminantHints.enable = "fieldless";
+            lifetimeElisionHints.enable = "skip_trivial";
+            typeHints.hideNamedConstructor = false;
+          };
+        };
       };
 
       language-server.vscode-json-language-server = {

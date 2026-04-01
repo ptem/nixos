@@ -11,6 +11,7 @@
     ./kitty.nix
     ./helix.nix
     ./file.nix
+    ./dev.nix
 
     # all other
     ./social.nix
