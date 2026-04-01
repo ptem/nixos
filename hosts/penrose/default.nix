@@ -48,6 +48,7 @@
 
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   # bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
