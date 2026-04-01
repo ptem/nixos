@@ -43,9 +43,7 @@ for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 60
 
 blur enable
 blur_xray disable
-blur_passes 6
 blur_radius 4
-blur_noise 0.0
 blur_brightness 0.65
 # blur_contrast 1.0
 # blur_saturation 1.0

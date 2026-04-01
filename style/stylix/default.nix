@@ -55,10 +55,10 @@ in
   };
 
   stylix.opacity = {
-    applications = 0.5;
-    desktop = 0.5;
+    applications = 1.0;
+    desktop = 0.9;
     popups = 0.8;
-    terminal = 0.5;
+    terminal = 0.8;
   };
 
   # Targets - anything which can have colors, fonts, or wallpaper applied.
