@@ -24,6 +24,10 @@
     # images
     qview
 
+    # ebooks
+    sioyek
+    koodo-reader
+
     # wraps nicotine with vopono to assign temp network namespace under vpn.
     # alerts forwarded port + applies to nicotine config before launch.
     # should probably abstract this a bit into its own script if I ever want to use it for other stuff, but this is fine for now.
