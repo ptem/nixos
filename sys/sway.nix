@@ -21,6 +21,7 @@
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
   programs.seahorse.enable = true;
 
   # realtime priority to help with latency/stuttering in high load scenarios (per nixos wiki)
