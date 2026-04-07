@@ -106,12 +106,12 @@
       };
 
       language-server.vscode-json-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+        command = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
         args = [ "--stdio" ];
       };
 
       language-server.vscode-css-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
+        command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
         args = [ "--stdio" ];
       };
 
