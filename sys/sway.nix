@@ -48,10 +48,16 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd \"bash -l -c ${pkgs.swayfx}/bin/sway\"";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd \"bash -l -c '${pkgs.swayfx}/bin/sway > /dev/null 2>&1'\"";
         user = "greeter";
       };
     };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   xdg.portal = {
@@ -89,5 +95,11 @@
       "input"
     ];
   };
+
+  # Gives greetd a temp home. Not really needed but I don't like seeing bad logs.
+  systemd.tmpfiles.rules = [
+    "d /var/lib/greetd/.cache 0750 greeter greetd -"
+    "d /var/lib/greetd/.local/share/keyrings 0700 greeter greetd -"
+  ];
 
 }

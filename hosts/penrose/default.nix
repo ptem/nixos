@@ -64,6 +64,9 @@
   boot.kernelParams = [
     "amdgpu.sg_display=0"
 
+    # Perhaps handling the 9070xt SMU issue
+    "amdgpu.cwsr_enable=0"
+
     "quiet"
     "udev.log_priority=4"
     "rd.udev.log_priority=3"
