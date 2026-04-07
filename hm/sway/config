@@ -32,8 +32,9 @@ smart_gaps off
 
 default_border pixel
 
-# pwvucontrol should always start as floating
+# App-Specific Configurations
 for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 600, move position cursor, move left 225,  move down 30
+for_window [class="steam"] floating enable
 
 ###################################################################################################
 

@@ -33,13 +33,7 @@
   networking.hostName = "penrose";
   networking.wireless.enable = lib.mkForce false;
 
-  # static ssh listen
-  services.openssh.listenAddresses = [
-    {
-      addr = "100.93.133.61";
-      port = 22;
-    }
-  ];
+  services.openssh.enable = true;
 
   # host-specific packages
   environment.systemPackages = [
@@ -48,19 +42,15 @@
 
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ "amdgpu" ];
   # bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.consoleLogLevel = 0;
 
-  # rgb for mobo + ram
-  # boot.kernelModules = [
-  #   "i2c-dev"
-  #   "i2c-piix4"
-  # ];
   boot.kernelParams = [
-    "amdgpu.sg_display=0" # hardware quirk. for deadlock.
-    # "acpi_enforce_resources=lax" # required for mobo to talk to i2c bus for pretty colors
+    "amdgpu.sg_display=0"
   ];
 
   # openrgb service
