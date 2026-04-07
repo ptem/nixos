@@ -35,6 +35,11 @@
 
   services.openssh.enable = true;
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  hardware.enableRedistributableFirmware = true;
+
   # host-specific packages
   environment.systemPackages = [
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -42,15 +47,28 @@
 
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
+  # Bootloader
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+
+    timeout = 5;
+  };
+
+  # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ "amdgpu" ];
-  # bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.consoleLogLevel = 0;
 
   boot.kernelParams = [
     "amdgpu.sg_display=0"
+
+    "quiet"
+    "udev.log_priority=4"
+    "rd.udev.log_priority=3"
+    "vt.global_cursor_default=0"
+    "boot.shell_on_fail"
   ];
 
   # openrgb service

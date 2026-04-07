@@ -13,15 +13,22 @@
     extraPackages = [ ];
   };
 
-  # polkit required for sway
+  # Sway requires polkit.
   security.polkit.enable = true;
-  security.pam.services.swaylock-plugin = { };
 
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
+
+  services.dbus.packages = [ pkgs.gcr ];
+
+  security.pam.services = {
+    login.enableGnomeKeyring = true;
+    greetd.enableGnomeKeyring = true;
+    swaylock-plugin = { };
+  };
+
+  # Keyring manager
   programs.seahorse.enable = true;
 
   # realtime priority to help with latency/stuttering in high load scenarios (per nixos wiki)

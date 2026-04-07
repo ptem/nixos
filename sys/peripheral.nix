@@ -13,7 +13,10 @@
   services.ratbagd.enable = true;
 
   # Printing Setup
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    logLevel = "error";
+  };
   services.colord.enable = true;
 
   # Printing: IPP Everywhere protocol (port 5353)

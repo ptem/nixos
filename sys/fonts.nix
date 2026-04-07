@@ -8,7 +8,7 @@
   };
 
   # fonts
-  console.font = "sun12x22";
+  # console.font = "sun12x22";
 
   fonts = {
     fontDir.enable = true;
