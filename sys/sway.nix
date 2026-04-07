@@ -54,12 +54,6 @@
     };
   };
 
-  systemd.services.greetd.serviceConfig = {
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
