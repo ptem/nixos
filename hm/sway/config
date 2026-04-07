@@ -36,6 +36,10 @@ default_border pixel
 for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 600, move position cursor, move left 225,  move down 30
 for_window [class="steam"] floating enable
 
+# deadlock is evil
+no_focus [class="steam_app_1422450" title="^$"]
+for_window [class="steam_app_1422450"] floating enable, border none, inhibit_idle focus
+
 ###################################################################################################
 
 ###
