@@ -14,6 +14,7 @@
 
   # Printing Setup
   services.printing.enable = true;
+  services.colord.enable = true;
 
   # Printing: IPP Everywhere protocol (port 5353)
   services.avahi = {
