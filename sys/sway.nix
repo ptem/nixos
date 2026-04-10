@@ -64,19 +64,14 @@
   # GTK things
   programs.dconf.enable = true;
 
-  # Graphics
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-    ];
-  };
-
   environment.sessionVariables = {
-    AMD_DEBUG = "wsi_force_bgra8_unorm=0";
-    NIXOS_OZONE_WL = "1"; # force electron/chromium apps to use wl
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+
+    SDL_VIDEODRIVER = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
   environment.systemPackages = with pkgs; [

@@ -90,8 +90,8 @@ exec_always pkill -x swayidle
 exec_always sleep 1 && swayidle -w \
          timeout 600 'swaylock-plugin -f -c 000000' \
          timeout 660 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         timeout 3600 'systemctl suspend' resume 'swaymsg "output * power on"'\
-         before-sleep 'swaylock -f -c 000000'
+         # timeout 3600 'systemctl suspend' resume 'swaymsg "output * power on"'\
+         # before-sleep 'swaylock -f -c 000000'
 
 
 ###################################################################################################

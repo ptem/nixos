@@ -15,6 +15,7 @@
 
     # system-level definitions
     ../../sys
+    ../../sys/amdgpu.nix
     ../../sys/audio.nix
     ../../sys/peripheral.nix
 
@@ -27,13 +28,9 @@
     ../../sys/sway.nix
   ];
 
-  programs.nix-ld.enable = true;
-
   # hostname & net overrides
   networking.hostName = "penrose";
   networking.wireless.enable = lib.mkForce false;
-
-  services.openssh.enable = true;
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -45,6 +42,7 @@
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  services.openssh.enable = true;
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
   # Bootloader
@@ -74,25 +72,16 @@
     "boot.shell_on_fail"
   ];
 
-  # openrgb service
-  services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.motherboard = "amd";
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = true;
 
-  security.sudo.extraRules = [
-    {
-      groups = [ "wheel" ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
+    extraConfig = ''
+      Defaults env_keep += "VOPONO_FORWARDED_PORT VOPONO_HOST_IP VOPONO_NS_IP VOPONO_NS DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY"
 
-  security.sudo.extraConfig = ''
-    Defaults env_keep += "VOPONO_FORWARDED_PORT VOPONO_HOST_IP VOPONO_NS_IP VOPONO_NS DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY"
-  '';
+      Defaults timestamp_timeout=30
+    '';
+  };
 
   # Users of Penrose
   users.users =
@@ -110,6 +99,9 @@
         "wheel"
       ];
     }));
+
+  # https://wiki.nixos.org/wiki/Nix-ld
+  programs.nix-ld.enable = true;
 
   # state version
   system.stateVersion = "25.11";
