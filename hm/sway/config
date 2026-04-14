@@ -88,8 +88,8 @@ bar {
 exec_always pkill -x swayidle
 
 exec_always sleep 1 && swayidle -w \
-         timeout 600 'swaylock-plugin -f -c 000000' \
-         timeout 660 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 1200 'swaylock-plugin -f -c 000000' \
+         timeout 1800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          # timeout 3600 'systemctl suspend' resume 'swaymsg "output * power on"'\
          # before-sleep 'swaylock -f -c 000000'
 
@@ -178,7 +178,7 @@ exec dbus-update-activation-environment --systemd --all
 
     # Screenshots
     bindsym $mod+$amp+s exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
-    bindsym Print exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'
+    bindsym Print exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -o DP-1 "$FILE" && wl-copy < "$FILE"'
 
     # === System/Session ===
     # Open Terminal
