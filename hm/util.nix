@@ -9,6 +9,7 @@
     xdg-user-dirs
     xz
     zip
+    rar
 
     # hw/bus
     pciutils
