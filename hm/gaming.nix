@@ -7,6 +7,8 @@
   home.packages = with pkgs; [
     stable.xivlauncher
 
+    r2modman
+
     # listen up emma
     (prismlauncher.override {
       # additionalPrograms = [ ffmpeg ];
