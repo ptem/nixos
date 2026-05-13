@@ -40,6 +40,7 @@
   # Nonspecific HM environment vars. No better place to put these rn.
   home.sessionVariables = {
     GOPATH = "$HOME/.go";
+    XDG_DATA_DIRS = "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
   };
 
   home.sessionPath = [

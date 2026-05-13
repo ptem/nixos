@@ -3,7 +3,7 @@
 
 {
   programs.firefox = {
-    enable = false;
+    enable = true;
   };
 
   programs.librewolf = {

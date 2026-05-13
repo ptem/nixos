@@ -9,6 +9,7 @@
     feishin
     streamlink
     nicotine-plus # alt: wrapped w/ vopono
+    stremio-linux-shell
 
     # track management
     yt-dlp
@@ -27,6 +28,8 @@
     # ebooks
     sioyek
     koodo-reader
+
+    stable.mpv
 
     # wraps nicotine with vopono to assign temp network namespace under vpn.
     # alerts forwarded port + applies to nicotine config before launch.
@@ -76,7 +79,7 @@
 
   # simple video player
   programs.mpv = {
-    enable = true;
+    # enable = true;
     defaultProfiles = [ "high-quality" ];
     scripts = [ pkgs.mpvScripts.mpris ];
 

@@ -40,6 +40,10 @@ for_window [class="steam"] floating enable
 no_focus [class="steam_app_1422450" title="^$"]
 for_window [class="steam_app_1422450"] floating enable, border none, inhibit_idle focus
 
+# xivlauncher is evil
+focus_follows_mouse yes
+for_window [shell="xwayland"] focus_on_window_activation focus
+
 ###################################################################################################
 
 ###

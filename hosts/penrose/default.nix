@@ -83,6 +83,9 @@
     '';
   };
 
+  # Other system-level services. Ideally find a better place for these but whatever.
+  services.flatpak.enable = true;
+
   # Users of Penrose
   users.users =
     (lib.genAttrs users (name: {

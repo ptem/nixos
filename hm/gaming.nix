@@ -3,9 +3,8 @@
 
 {
 
-  # TODO: xiv symlinking.
   home.packages = with pkgs; [
-    stable.xivlauncher
+    xivlauncher
 
     r2modman
 

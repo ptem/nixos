@@ -49,6 +49,9 @@
 
     # idk
     fastfetch
+
+    # flatpaks
+    flatpak
   ];
 
   # shell & aliases

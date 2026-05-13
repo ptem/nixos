@@ -18,6 +18,8 @@
       # Text (Sans + Serif + Mono)
       ibm-plex
       noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       geist-font
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
@@ -57,7 +59,7 @@
       defaultFonts = {
         sansSerif = [
           "Geist"
-          "Noto Sans Serif"
+          "Noto Sans"
         ];
         serif = [
           "IBM Plex Serif"
@@ -66,6 +68,7 @@
         monospace = [
           "IBM Plex Mono Text"
           "JetBrainsMono Nerd Font"
+          "Noto Sans Mono"
         ];
         emoji = [
           "Twitter Color Emoji"
