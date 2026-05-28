@@ -5,8 +5,9 @@
 
   home.packages = with pkgs; [
     xivlauncher
+    fflogs
 
-    r2modman
+    stable.r2modman
 
     # listen up emma
     (prismlauncher.override {

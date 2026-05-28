@@ -8,6 +8,8 @@
 output "DP-2" mode 2560x1440@180Hz pos 0 0 adaptive_sync on
 output "DP-1" mode 2560x1440@180Hz pos 2560 0 adaptive_sync on
 
+output * allow_tearing yes
+
 ###
 ### Input Configuration
 ###
@@ -43,6 +45,7 @@ for_window [class="steam_app_1422450"] floating enable, border none, inhibit_idl
 # xivlauncher is evil
 focus_follows_mouse yes
 for_window [shell="xwayland"] focus_on_window_activation focus
+
 
 ###################################################################################################
 
@@ -205,6 +208,12 @@ exec dbus-update-activation-environment --systemd --all
 
     #bindsym $mod+Shift+Delete exec swaynag -t warning -m 'erm??' -B 'erm...' 'echo test'
 
+    # Mute mic
+    bindsym $mod+Scroll_Lock exec /home/bee/.dotfiles/hm/sway/mic-mute-toggle.sh
+
+    # PTT mic
+    bindsym --no-repeat Scroll_Lock exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 && pw-play --volume 0.5 ~/.local/share/sounds/micsounds/ptt-start.wav
+    bindsym --release Scroll_Lock exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1 && pw-play --volume 0.5 ~/.local/share/sounds/micsounds/ptt-stop.wav
 
 
 ###

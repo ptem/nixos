@@ -5,8 +5,8 @@
 
   home.packages = with pkgs; [
     gajim # xmpp
-    teamspeak6-client
-    vesktop # lightweight/privacy-focused discord client
+    # teamspeak6-client
+    stable.vesktop
   ];
 
 }

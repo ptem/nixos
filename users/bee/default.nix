@@ -24,6 +24,10 @@
 
   home.packages = [ pkgs.libsecret ];
 
+  # Hyprland eval warning. I don't use hyprland so idk why home manager cares so much.
+  # TODO: Look at this.
+  wayland.windowManager.hyprland.configType = "hyprlang";
+
   # Default Programs
   xdg.mimeApps = {
     enable = true;

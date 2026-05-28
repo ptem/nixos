@@ -76,6 +76,8 @@ in
       enable = true;
     };
 
+    stylix.targets.firefox.enable = false;
+
   };
 
 }

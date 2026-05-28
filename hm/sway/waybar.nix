@@ -40,6 +40,7 @@
         "mpris"
         "tray"
         "pulseaudio"
+        "pulseaudio#microphone"
         "clock"
       ];
 
@@ -124,6 +125,15 @@
           ];
         };
         on-click = "swaymsg '[app_id=\"com.saivert.pwvucontrol\"] kill' || pwvucontrol";
+      };
+
+      "pulseaudio#microphone" = {
+        format = "{format_source}";
+        format-source = " {volume}%";
+        format-source-muted = " Muted";
+        on-click = "swaymsg '[app_id=\"com.saivert.pwvucontrol\"] kill' || pwvucontrol";
+        on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        scroll-step = 5;
       };
 
       "tray" = {

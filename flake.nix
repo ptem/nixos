@@ -8,6 +8,9 @@
     agenix.url = "github:ryantm/agenix";
     naviterm.url = "gitlab:detoxify92/naviterm";
 
+    # hydra build 326901325 for ruby being borked
+    nixpkgs-pinned.url = "github:nixos/nixpkgs/9cadaf6932b7c926e468f777549d57f04a7212da";
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +28,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      nixpkgs-pinned,
       ...
     }:
     let
@@ -51,6 +55,28 @@
 
       #  Generates an attribute for each function passed, with supported systems as an arg.
       forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      # inst pinned pkgs for overlay
+      pinnedPkgs = import nixpkgs-pinned {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+
+      # define ruby overlay because i hate my life
+      rubyOverlay = final: prev: {
+        ruby = pinnedPkgs.ruby;
+        rubyPackages = pinnedPkgs.rubyPackages;
+
+        ruby_3_2 = pinnedPkgs.ruby_3_2;
+        rubyPackages_3_2 = pinnedPkgs.rubyPackages_3_2;
+        ruby_3_3 = pinnedPkgs.ruby_3_3;
+        rubyPackages_3_3 = pinnedPkgs.rubyPackages_3_3;
+        ruby_3_4 = pinnedPkgs.ruby_3_4;
+        rubyPackages_3_4 = pinnedPkgs.rubyPackages_3_4;
+        ruby_4_0 = pinnedPkgs.ruby_4_0;
+        rubyPackages_4_0 = pinnedPkgs.rubyPackages_4_0;
+      };
+
     in
     {
       # custom packages (thru nix build, nix shell, etc)
@@ -93,6 +119,7 @@
                 # overlays.additions
                 overlays.modifications
                 overlays.stable-packages
+                rubyOverlay
               ];
             }
 
@@ -117,6 +144,7 @@
               # overlays.additions
               overlays.modifications
               overlays.stable-packages
+              rubyOverlay
             ];
           };
 

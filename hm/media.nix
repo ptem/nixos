@@ -6,17 +6,17 @@
     ffmpeg
 
     # consume the content
-    feishin
+    stable.feishin
     streamlink
     nicotine-plus # alt: wrapped w/ vopono
-    stremio-linux-shell
+    # stremio-linux-shell
 
     # track management
     yt-dlp
     exiftool
     opustags
     wrtag
-    picard
+    stable.picard
 
     # audio
     playerctl
@@ -27,7 +27,7 @@
 
     # ebooks
     sioyek
-    koodo-reader
+    stable.koodo-reader
 
     stable.mpv
 
