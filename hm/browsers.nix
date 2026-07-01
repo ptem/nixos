@@ -7,7 +7,4 @@
     configPath = "${config.xdg.configHome}/mozilla/firefox";
   };
 
-  programs.librewolf = {
-    enable = true;
-  };
 }

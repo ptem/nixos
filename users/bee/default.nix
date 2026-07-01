@@ -33,11 +33,14 @@
     enable = true;
 
     defaultApplications = {
-      "text/html" = "librewolf.desktop";
-      "x-scheme-handler/http" = "librewolf.desktop";
-      "x-scheme-handler/https" = "librewolf.desktop";
-      "x-scheme-handler/about" = "librewolf.desktop";
-      "x-scheme-handler/unknown" = "librewolf.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+
+      "inode/directory" = "thundar.desktop";
+      "text/plain" = "helix.desktop";
     };
   };
 
@@ -45,6 +48,7 @@
   home.sessionVariables = {
     GOPATH = "$HOME/.go";
     XDG_DATA_DIRS = "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
+    TERMINAL = "kitty";
   };
 
   home.sessionPath = [
@@ -53,11 +57,10 @@
   ];
 
   # Compat / Defaults because idk, reasons. Things yelling.
-  gtk = {
-    # Default value of gtk.gtk4.theme has changed from config.gtk.theme to null
-    # Adopt new behavior:
-    gtk4.theme = null;
-
-  };
+  #  gtk = {
+  # Default value of gtk.gtk4.theme has changed from config.gtk.theme to null
+  # Adopt new behavior:
+  # gtk4.theme = null;
+  #  };
 
 }

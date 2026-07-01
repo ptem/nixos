@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+
+    stable.obs-studio-plugins.obs-vkcapture
+  ];
+
   programs.obs-studio = {
     enable = true;
 

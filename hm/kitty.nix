@@ -33,7 +33,7 @@
         # cursor_text_color = lib.mkForce "#${colors.base00}";
         # url_color = lib.mkForce "#${colors.base09}";
 
-        open_url_with = "librewolf";
+        open_url_with = "firefox";
 
       };
 

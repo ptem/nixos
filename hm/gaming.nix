@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [
     xivlauncher
-    fflogs
+    archon-lite
 
     stable.r2modman
 
@@ -24,5 +24,22 @@
     })
 
   ];
+
+  # Fuzzel stuff
+  xdg.desktopEntries = {
+    archon-lite = {
+      name = "Archon Lite";
+      genericName = "Combat Log Uploader";
+      comment = "Uploads combat logs to FFLogs";
+      exec = "${pkgs.archon-lite}/bin/archon-lite";
+      icon = "application-games";
+      terminal = false;
+      categories = [ "Game" ];
+
+      settings = {
+        Keywords = "ff;fflogs;archon;";
+      };
+    };
+  };
 
 }

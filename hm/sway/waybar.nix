@@ -109,7 +109,7 @@
         ignored-players = [
           "firefox"
           "firefox.instance_1_79"
-          "librewolf"
+          # "librewolf"
           "youtube"
         ];
       };

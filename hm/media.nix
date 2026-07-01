@@ -6,7 +6,7 @@
     ffmpeg
 
     # consume the content
-    stable.feishin
+    feishin
     streamlink
     nicotine-plus # alt: wrapped w/ vopono
     # stremio-linux-shell

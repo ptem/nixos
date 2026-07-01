@@ -5,6 +5,7 @@
   inputs,
   users,
   superusers,
+  config,
   ...
 }:
 
@@ -40,10 +41,14 @@
   # host-specific packages
   environment.systemPackages = [
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    pkgs.docker-compose
   ];
 
   services.openssh.enable = true;
   programs.ssh.askPassword = lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+
+  virtualisation.docker.enable = true;
 
   # Bootloader
   boot.consoleLogLevel = 0;
@@ -56,7 +61,7 @@
   };
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   boot.kernelParams = [
@@ -92,6 +97,7 @@
       isNormalUser = true;
       extraGroups = [
         "users"
+        "docker"
       ];
     }))
     // (lib.genAttrs superusers (name: {
@@ -100,6 +106,7 @@
         "users"
         "networkmanager"
         "wheel"
+        "docker"
       ];
     }));
 

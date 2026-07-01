@@ -107,13 +107,16 @@ exec_always sleep 1 && swayidle -w \
 ### Autoexec
 ###
 
-exec librewolf
+exec firefox
 
 # cliphist watch history, required at session start.
 exec wl-paste --watch cliphist store
 
 # Ensure that Sway actually imports the keyring environment.
 exec dbus-update-activation-environment --systemd --all
+
+# polkit
+exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
 
 ###################################################################################################
 ###################################################################################################

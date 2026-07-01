@@ -48,7 +48,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd \"bash -l -c '${pkgs.swayfx}/bin/sway > /dev/null 2>&1'\"";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.writeShellScript "sway-run" "exec bash -l -c '${pkgs.swayfx}/bin/sway'"}";
         user = "greeter";
       };
     };
@@ -79,6 +79,8 @@
 
   environment.systemPackages = with pkgs; [
     sway
+
+    polkit_gnome
   ];
 
   users.users.greeter = {
