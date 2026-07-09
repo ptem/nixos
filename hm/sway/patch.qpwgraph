@@ -1,0 +1,26 @@
+<!DOCTYPE patchbay>
+<patchbay name="patch" version="1.0.2">
+ <items>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Desktop Applications Bus" port="Desktop Applications Bus:monitor_FL"/>
+   <input node="BTD 700 Digital Stereo (IEC958)" port="BTD 700:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Desktop Applications Bus" port="Desktop Applications Bus:monitor_FR"/>
+   <input node="BTD 700 Analog Stereo" port="BTD 700:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Desktop Applications Bus" port="Desktop Applications Bus:monitor_FL"/>
+   <input node="BTD 700 Analog Stereo" port="BTD 700:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Scarlett 2i2 4th Gen Input 1 Mic/Inst/Line" port="Scarlett 2i2 4th Gen:capture_MONO"/>
+   <input node="Chromium input" port="Chromium input:input_MONO"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Desktop Applications Bus" port="Desktop Applications Bus:monitor_FR"/>
+   <input node="BTD 700 Digital Stereo (IEC958)" port="BTD 700:playback_FR"/>
+  </item>
+ </items>
+</patchbay>
+

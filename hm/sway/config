@@ -116,7 +116,9 @@ exec wl-paste --watch cliphist store
 exec dbus-update-activation-environment --systemd --all
 
 # polkit
-exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+exec polkit_gnome/libexec/polkit-gnome-authentication-agent-1
+
+exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph"
 
 ###################################################################################################
 ###################################################################################################

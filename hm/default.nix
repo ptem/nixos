@@ -24,6 +24,7 @@
     ./obs.nix
 
     ./sway
+    ./cursor.nix
   ];
 
 }
