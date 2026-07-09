@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     gajim # xmpp
     # teamspeak6-client
-    stable.vesktop
+    vesktop
   ];
 
 }
