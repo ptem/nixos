@@ -96,6 +96,7 @@
       };
 
       "mpris" = {
+        player = "Feishin";
         interval = 1;
         format = "{title} - {artist} {status_icon} [{position}:{length}]";
         format-paused = "{title} - {artist} {status_icon} [{position}:{length}]";
@@ -108,8 +109,8 @@
         };
         ignored-players = [
           "firefox"
-          "firefox.instance_1_79"
-          # "librewolf"
+          "Firefox"
+          "chromium"
           "youtube"
         ];
       };
