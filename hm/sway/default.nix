@@ -8,7 +8,7 @@
 {
 
   imports = [
-    ./waybar.nix # waybar configuration
+    ./waybar.nix
     ./fuzzel.nix
   ];
 

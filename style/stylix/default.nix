@@ -2,7 +2,6 @@
 {
   pkgs,
   lib,
-  config,
   isHM ? false,
   ...
 }:
@@ -45,14 +44,6 @@ in
       package = pkgs.twitter-color-emoji;
       name = "Twitter Color Emoji";
     };
-  };
-
-  # will default to base cursors if there's a fuckup here.
-  # debug/runtime set: swaymsg seat "*" xcursor_theme catppuccin-mocha-green-cursors 24
-  stylix.cursor = {
-    package = pkgs.everforest-cursors;
-    name = "everforest-cursors";
-    size = 32;
   };
 
   stylix.opacity = {
