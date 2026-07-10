@@ -61,7 +61,6 @@ in
   stylix.autoEnable = true;
 
   imports = lib.optional isHM {
-    # stylix.targets.librewolf.enable = false;
 
     stylix.targets.kitty = {
       enable = true;
