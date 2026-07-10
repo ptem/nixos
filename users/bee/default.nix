@@ -22,7 +22,13 @@
   # use home manager
   programs.home-manager.enable = true;
 
-  home.packages = [ pkgs.libsecret ];
+  home.packages = with pkgs; [
+    libsecret
+
+    # gtk icon fallbacks
+    hicolor-icon-theme
+    adwaita-icon-theme
+  ];
 
   # Hyprland eval warning. I don't use hyprland so idk why home manager cares so much.
   # TODO: Look at this.
@@ -49,6 +55,9 @@
     GOPATH = "$HOME/.go";
     XDG_DATA_DIRS = "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
     TERMINAL = "kitty";
+
+    # for GTK apps
+    QT_QPA_PLATFORMTHEME = "gtk3";
   };
 
   home.sessionPath = [
@@ -56,11 +65,15 @@
     "$HOME/.cargo/bin"
   ];
 
-  # Compat / Defaults because idk, reasons. Things yelling.
-  #  gtk = {
-  # Default value of gtk.gtk4.theme has changed from config.gtk.theme to null
-  # Adopt new behavior:
-  # gtk4.theme = null;
-  #  };
+  gtk = {
+    enable = true;
+
+    # Actual theme auto-set via stylix target.
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    colorScheme = "dark";
+  };
 
 }
