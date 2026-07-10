@@ -71,8 +71,6 @@
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
 
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
