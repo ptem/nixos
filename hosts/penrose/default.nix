@@ -27,6 +27,7 @@
     ../../sys/network.nix
 
     ../../sys/sway.nix
+    ../../sys/triggerhappy.nix
   ];
 
   # hostname & net overrides
