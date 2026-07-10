@@ -5,8 +5,8 @@
 ### Output Configuration
 ###
 
-output "DP-2" mode 2560x1440@180Hz pos 0 0 adaptive_sync on
-output "DP-1" mode 2560x1440@180Hz pos 2560 0 adaptive_sync on
+output "DP-2" mode 2560x1440@180Hz pos 0 0 adaptive_sync off
+output "DP-1" mode 2560x1440@180Hz pos 2560 0 adaptive_sync off
 
 output * allow_tearing yes
 
@@ -18,6 +18,9 @@ input * {
     xkb_layout "us"
     xkb_numlock enabled
 }
+
+### Cursor Config
+seat * xcursor_theme everforest-cursors 32
 
 ###################################################################################################
 
@@ -114,6 +117,7 @@ exec wl-paste --watch cliphist store
 
 # Ensure that Sway actually imports the keyring environment.
 exec dbus-update-activation-environment --systemd --all
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 # polkit
 exec polkit_gnome/libexec/polkit-gnome-authentication-agent-1
@@ -213,12 +217,8 @@ exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph
 
     #bindsym $mod+Shift+Delete exec swaynag -t warning -m 'erm??' -B 'erm...' 'echo test'
 
-    # Mute mic
-    bindsym $mod+Scroll_Lock exec /home/bee/.dotfiles/hm/sway/mic-mute-toggle.sh
-
-    # PTT mic
-    bindsym --no-repeat Scroll_Lock exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 && pw-play --volume 0.5 ~/.local/share/sounds/micsounds/ptt-start.wav
-    bindsym --release Scroll_Lock exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1 && pw-play --volume 0.5 ~/.local/share/sounds/micsounds/ptt-stop.wav
+    # Mute mic [F13]. PTT handling is now in sys/triggerhappy.nix.
+    bindsym XF86Tools exec /home/bee/.dotfiles/hm/sway/mic-mute-toggle.sh
 
 
 ###
