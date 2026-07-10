@@ -8,8 +8,9 @@ let
   userHome = config.users.users.${targetUser}.home;
 
   pttHandler = pkgs.writeShellScript "ptt-handler.sh" ''
-    export XDG_RUNTIME_DIR="/run/user/${userUid}"
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${userUid}/bus"
+    USER_UID=$(${pkgs.coreutils}/bin/id -u ${targetUser})
+    export XDG_RUNTIME_DIR="/run/user/''${USER_UID}"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/''${USER_UID}/bus"
 
     if [ "$1" = "start" ]; then
       ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
