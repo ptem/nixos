@@ -9,4 +9,19 @@
     vesktop
   ];
 
+  xdg.desktopEntries.vesktop = {
+    name = "Discord";
+    exec = "vesktop --ozone-platform=x11 %U";
+    icon = "vesktop";
+    terminal = false;
+    type = "Application";
+    categories = [
+      "InstantMessaging"
+      "Chat"
+    ];
+    settings = {
+      Keywords = "discord;voice;chat;vesktop;";
+    };
+  };
+
 }
