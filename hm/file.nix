@@ -43,8 +43,8 @@
       file
       libarchive
       lynx
-      haskellPackages.pdftotext
-      haskellPackages.epub
+      # haskellPackages.pdftotext
+      # haskellPackages.epub
       # bat -- already have
     ];
 
