@@ -28,6 +28,8 @@
 
     ../../sys/sway.nix
     ../../sys/triggerhappy.nix
+
+    ../../sys/musicprod.nix
   ];
 
   # hostname & net overrides
@@ -99,6 +101,7 @@
       extraGroups = [
         "users"
         "docker"
+        "audio"
       ];
     }))
     // (lib.genAttrs superusers (name: {
