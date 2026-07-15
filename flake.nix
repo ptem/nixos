@@ -6,7 +6,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     agenix.url = "github:ryantm/agenix";
-    naviterm.url = "gitlab:detoxify92/naviterm";
 
     stylix = {
       url = "github:danth/stylix";
@@ -34,9 +33,6 @@
       users = [ ];
       systems = [ "x86_64-linux" ];
 
-      domain = "axolotlsin.space";
-      navidromeServer = "navi.axolotlsin.space";
-
       # import overlays with inputs to access stable nixpkgs
       overlays = import ./overlays { inherit inputs; };
       specialArgs = {
@@ -44,8 +40,6 @@
           inputs
           users
           superusers
-          domain
-          navidromeServer
           ;
       };
 
@@ -122,7 +116,7 @@
           };
 
           extraSpecialArgs = {
-            inherit inputs navidromeServer;
+            inherit inputs;
             username = "bee";
             isHM = true;
           };

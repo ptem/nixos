@@ -20,7 +20,6 @@
     ./fastfetch.nix
 
     ./media.nix
-    ./naviterm.nix
     ./obs.nix
 
     ./sway
