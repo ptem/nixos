@@ -1,5 +1,5 @@
 # sys/sway.nix
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
 
@@ -7,10 +7,6 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    package = pkgs.swayfx;
-
-    # remove default packages. declared in hm/sway.nix
-    extraPackages = [ ];
   };
 
   # Sway requires polkit.
@@ -25,30 +21,19 @@
   security.pam.services = {
     login.enableGnomeKeyring = true;
     greetd.enableGnomeKeyring = true;
-    swaylock-plugin = { };
+    gtklock = { };
   };
 
   # Keyring manager
   programs.seahorse.enable = true;
 
-  # realtime priority to help with latency/stuttering in high load scenarios (per nixos wiki)
-  security.pam.loginLimits = [
-    {
-      domain = "@users";
-      item = "rtprio";
-      type = "-";
-      value = 1;
-    }
-  ];
-
   # greetd - login manager daemon
   # must initialize as login shell and source ~/.profile + Home Manager sessions vars into  memory, hence execution `bash -l -c [sway]`
-  # some things [like cursors] don't seem to get respected if set later if this isn't done
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --greeting '.remember our promise.' --cmd ${pkgs.writeShellScript "sway-run" "exec bash -l -c '${pkgs.swayfx}/bin/sway'"}";
+        command = "${pkgs.tuigreet}/bin/tuigreet --remember-session --time --asterisks --greeting '.remember our promise.' --cmd 'bash -l -c sway'";
         user = "greeter";
       };
     };
@@ -57,10 +42,27 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+
+    wlr.settings = {
+      screencast = {
+        chooser_type = "simple";
+        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+        max_fps = 60;
+        force_mod_linear = 1;
+        damage_tracking = 0;
+      };
+    };
+
+    config.sway = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+    };
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
     ];
+
     config.common.default = "*";
   };
 
@@ -77,8 +79,11 @@
 
   environment.systemPackages = with pkgs; [
     sway
-
     polkit_gnome
+
+    fuzzel
+    slurp
+    grim
   ];
 
   users.users.greeter = {

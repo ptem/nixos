@@ -12,11 +12,12 @@
 .modules-left,
 .modules-center,
 .modules-right {
-  margin: 0px 10px;
+  margin: 0px 0px;
 }
 
 .modules-right {
   padding-left: 10px;
+  padding-right: 10px;
   border-style: solid;
   border-width: 0px 0px 0px 1px;
   border-color: alpha(@base05, 0.3);
@@ -30,6 +31,7 @@
 #mode,
 #scratchpad {
   margin: 0px 0px;
+  padding-left: 5px;
 }
 
 #mode,
@@ -66,7 +68,7 @@
 }
 
 window#waybar.empty {
-  background-color: alpha(@base00, 0.01);
+  background-color: alpha(@base00, 0.8);
 }
 
 window#waybar.solo #window,
@@ -125,13 +127,13 @@ window#waybar.tabbed #window {
   border-color: alpha(@base05, 0.3);
 }
 
-#tray>.passive {
-  opacity: 0.4;
+/* #tray>.passive {
+  opacity: 0.9;
 }
 
 #tray>.active {
   opacity: 1.0;
-}
+} */
 
 #tray>.needs-attention {
   background-color: @base0E;

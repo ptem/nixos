@@ -7,8 +7,8 @@
 }:
 
 let
-  theme = "catppuccin-macchiato";
-  # theme = "everforest-dark-hard";
+  # theme = "catppuccin-macchiato";
+  theme = "everforest-dark-hard";
   # theme = "darkmoss";
 in
 {
@@ -19,7 +19,7 @@ in
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
   # Can override using stylix.override, anything that base16.nix accepts.
 
-  stylix.image = ../assets/arnaud-steckle-34RmaD-jVbY-unsplash.jpg;
+  stylix.image = ../assets/wallpaper-lauripoldre-pine.jpg;
   # if base16Scheme is undeclared, stylix will generate one from the wallpaper.
 
   stylix.polarity = "dark"; # dark/light
@@ -48,9 +48,9 @@ in
 
   stylix.opacity = {
     applications = 1.0;
-    desktop = 0.9;
-    popups = 0.8;
-    terminal = 0.8;
+    desktop = 1.0;
+    popups = 1.0;
+    terminal = 1.0;
   };
 
   # Targets - anything which can have colors, fonts, or wallpaper applied.
@@ -67,6 +67,16 @@ in
     };
 
     stylix.targets.firefox.enable = false;
+
+    stylix.targets.gtk.extraCss = ''
+      window.background {
+        border-radius: 0;
+      }
+
+      decoration {
+        border-radius: 0;
+      }
+    '';
 
   };
 

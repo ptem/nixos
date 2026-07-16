@@ -28,22 +28,19 @@ seat * xcursor_theme everforest-cursors 32
 ### Window Placement / Behavior
 ###
 
-gaps inner 10
+gaps inner 5
 gaps bottom 0
-gaps top 2
-gaps left 1
-gaps right 1
-smart_gaps off
+gaps top 0
+gaps left 0
+gaps right 0
+smart_gaps on
+smart_borders off
 
-default_border pixel
+default_border pixel 1
 
 # App-Specific Configurations
-for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 600, move position cursor, move left 225,  move down 30
+for_window [app_id="com.saivert.pwvucontrol"] floating enable, resize set 800 500, move position cursor, move left 225,  move up 25
 for_window [class="steam"] floating enable
-
-# deadlock is evil
-no_focus [class="steam_app_1422450" title="^$"]
-for_window [class="steam_app_1422450"] floating enable, border none, inhibit_idle focus
 
 # xivlauncher is evil
 focus_follows_mouse yes
@@ -52,30 +49,6 @@ for_window [shell="xwayland"] focus_on_window_activation focus
 
 ###################################################################################################
 
-###
-### SwayFX
-###
-
-blur enable
-blur_xray disable
-blur_radius 4
-blur_brightness 0.65
-# blur_contrast 1.0
-# blur_saturation 1.0
-
-corner_radius 5
-default_dim_inactive 0.00
-
-# shadows enable
-# shadow blur_radius 10
-
-layer_effects "waybar" {
-    blur enable;
-    blur_xray enable;
-    blur_ignore_transparent enable;
-    shadows enable;
-    corner_radius 5;
-}
 
 ###################################################################################################
 
@@ -89,20 +62,6 @@ bar {
 
 ###################################################################################################
 
-###
-### Idle / Lockscreen management
-###
-
-
-# swayidle -- testing: watch -n 1 'pgrep -a swayidle'
-exec_always pkill -x swayidle
-
-exec_always sleep 1 && swayidle -w \
-         timeout 1200 'swaylock-plugin -f -c 000000' \
-         timeout 1800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         # timeout 3600 'systemctl suspend' resume 'swaymsg "output * power on"'\
-         # before-sleep 'swaylock -f -c 000000'
-
 
 ###################################################################################################
 
@@ -115,12 +74,8 @@ exec firefox
 # cliphist watch history, required at session start.
 exec wl-paste --watch cliphist store
 
-# Ensure that Sway actually imports the keyring environment.
+exec eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 exec dbus-update-activation-environment --systemd --all
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-# polkit
-exec polkit_gnome/libexec/polkit-gnome-authentication-agent-1
 
 exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph"
 
@@ -204,7 +159,7 @@ exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph
     bindsym $mod+d exec $menu
 
     # Lock [Manual]
-    bindsym $mod+Pause exec swaylock-plugin -f
+    bindsym $mod+Pause exec gtklock -d
 
     # Mod + Shift + Q  -- kill focused window
     bindsym $mod+$amp+q kill

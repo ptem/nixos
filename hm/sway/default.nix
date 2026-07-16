@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 
@@ -14,9 +15,8 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.swayfx;
+    package = null;
     checkConfig = false;
-
     systemd.enable = true;
 
     extraConfig = builtins.readFile ./config;
@@ -30,59 +30,102 @@
   };
 
   home.packages = with pkgs; [
-    pamixer # pulseaudio cli mixer - https://github.com/cdemoulins/pamixer
 
-    swaybg # wallpaper tool
+    swaybg
     rubyPackages_4_0.gdk_pixbuf2
     imagemagick
 
     dunst # notification daemon # TODO: this
-    libnotify # sends notifs to daemon
-
-    fuzzel # launcher/fzf # TODO: this
-
-    # snip region
-    grim
-    slurp
+    libnotify # sends notifs to notif daemon
 
     # clipboard + history
     wl-clipboard
-    # wl-clipboard-history # TODO: not in nixpkgs. is just a bash script, can re-implement -- https://github.com/janza/wl-clipboard-history
+    cliphist
+    xdg-user-dirs
 
-    # auto-included packages:
-    brightnessctl # currently not really useful. only has kb/mic lights.
-    # foot
-    # grim
-    pulseaudio
     swayidle
+    gtklock
     # swaylock
     # swaylock-plugin
     # wmenu
   ];
 
-  programs.swaylock = {
+  services.dunst = {
     enable = true;
+  };
 
-    package = pkgs.swaylock-plugin;
-
-    settings = {
-      show-failed-attempts = true;
-      # show-keyboard-layout = true;
-      indicator-caps-lock = true;
-      # font = "";
-      # font-size = 24;
-      indicator-idle-visible = false;
-      indicator-radius = 100;
-      indicator-thickness = 5;
-      # indicator-x-position = 0;
-      # indicator-y-position = 0;
-      line-uses-inside = true;
-      line-uses-ring = false;
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit.Description = "polkit-gnome-authentication-agent-1";
+    Install.WantedBy = [ "sway-session.target" ];
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 
-  services.dunst = {
+  services.swayidle = {
     enable = true;
+    events = {
+      before-sleep = "${pkgs.gtklock}/bin/gtklock -d";
+    };
+    timeouts = [
+      {
+        timeout = 1200;
+        command = "${pkgs.swaylock-plugin}/bin/gtklock -d";
+      }
+      {
+        timeout = 1800;
+        command = "${pkgs.sway}/bin/swaymsg 'output * power off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * power on'";
+      }
+    ];
+  };
+
+  xdg.configFile."gtklock/style.css".source = ./gtklock-style.css;
+
+  wayland.windowManager.sway.config = {
+    colors = {
+
+      # border - color of border around outside edge of title bar
+      # background - primary  background of title bar itself
+      # text - color of font used for window title text inside title bar
+      # indicator - color of split indicator line. on inside edge of focused window
+      #             to show  where next tiled application will be placed
+      # childBorder - color of border  drawn around actual application window content.
+
+      # Window which currently has the focus
+      focused = {
+        # border = "#${config.lib.stylix.colors.base04}";
+        # background = "#${config.lib.stylix.colors.base04}";
+        # text = "#${config.lib.stylix.colors.base00}";
+        # indicator = "#${config.lib.stylix.colors.base04}";
+        childBorder = lib.mkForce "#${config.lib.stylix.colors.base02}";
+        indicator = lib.mkForce "#${config.lib.stylix.colors.base02}";
+      };
+
+      # Window which is the focused one in its container, but does not have focus at the moment.
+      focusedInactive = {
+        childBorder = lib.mkForce "#${config.lib.stylix.colors.base01}";
+        indicator = lib.mkForce "#${config.lib.stylix.colors.base01}";
+      };
+
+      # Window which is not focused.
+      unfocused = {
+        childBorder = lib.mkForce "#${config.lib.stylix.colors.base10}";
+        indicator = lib.mkForce "#${config.lib.stylix.colors.base10}";
+      };
+
+      # Window which has its urgency hint activated.
+      urgent = {
+        childBorder = lib.mkForce "#${config.lib.stylix.colors.base08}";
+        indicator = lib.mkForce "#${config.lib.stylix.colors.base08}";
+      };
+
+    };
+
   };
 
 }

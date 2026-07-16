@@ -18,8 +18,8 @@
       layer = "top";
       position = "bottom";
       height = 20;
-      width = 2500;
-      margin-bottom = 3;
+      width = 2560;
+      margin-bottom = 0;
 
       # output = [ "DP-1" "DP-2" ];
 
@@ -98,8 +98,10 @@
       "mpris" = {
         player = "Feishin";
         interval = 1;
-        format = "{title} - {artist} {status_icon} [{position}:{length}]";
-        format-paused = "{title} - {artist} {status_icon} [{position}:{length}]";
+        # format = "{title} - {artist} {status_icon} [{position}:{length}]";
+        # format-paused = "{title} - {artist} {status_icon} [{position}:{length}]";
+        format = "{title} {status_icon} {artist}";
+        format-paused = "{title} {status_icon} {artist}";
         player-icons = {
           default = ">";
         };
@@ -131,7 +133,7 @@
       "pulseaudio#microphone" = {
         format = "{format_source}";
         format-source = " {volume}%";
-        format-source-muted = " Muted";
+        format-source-muted = " Mut";
         on-click = "swaymsg '[app_id=\"com.saivert.pwvucontrol\"] kill' || pwvucontrol";
         on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         scroll-step = 5;
