@@ -10,17 +10,34 @@
   ];
 
   xdg.desktopEntries.vesktop = {
-    name = "Discord";
-    exec = "vesktop --ozone-platform=x11 %U";
+    name = "Vesktop";
+    exec = "env XDG_SESSION_TYPE=x11 WAYLAND_DISPLAY= vesktop --ozone-platform=x11 --disable-features=WebRTCPipeWireCapturer %U";
     icon = "vesktop";
     terminal = false;
     type = "Application";
     categories = [
+      "Network"
       "InstantMessaging"
       "Chat"
     ];
     settings = {
-      Keywords = "discord;voice;chat;vesktop;";
+      Keywords = "vesktop;discord;voice;chat;";
+    };
+  };
+
+  xdg.desktopEntries."vesktop-wlr" = {
+    name = "Vesktop (wl/wlr)";
+    exec = "vesktop --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland %U";
+    icon = "vesktop";
+    terminal = false;
+    type = "Application";
+    categories = [
+      "Network"
+      "InstantMessaging"
+      "Chat"
+    ];
+    settings = {
+      Keywords = "vesktop;discord;voice;chat;wayland;wlr;";
     };
   };
 
