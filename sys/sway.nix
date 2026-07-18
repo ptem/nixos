@@ -43,15 +43,15 @@
     enable = true;
     wlr.enable = true;
 
-    wlr.settings = {
-      screencast = {
-        chooser_type = "simple";
-        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-        max_fps = 60;
-        force_mod_linear = 1;
-        damage_tracking = 0;
-      };
-    };
+    # wlr.settings = {
+    #   screencast = {
+    #     chooser_type = "simple";
+    #     chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+    #     max_fps = 60;
+    #     force_mod_linear = 1;
+    #     damage_tracking = 0;
+    #   };
+    # };
 
     config.sway = {
       default = [ "gtk" ];
@@ -80,10 +80,6 @@
   environment.systemPackages = with pkgs; [
     sway
     polkit_gnome
-
-    fuzzel
-    slurp
-    grim
   ];
 
   users.users.greeter = {

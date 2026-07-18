@@ -67,11 +67,6 @@
     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
     hmr = "home-manager switch --flake ~/.dotfiles#bee@penrose";
     rebuild = "nrs && hmr";
-
-    # glurp = ''FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"'';
-    # TODO: fix notif daemon again lol
-    glurp = ''FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE" && notify-send -t 3000 "Screenshot Taken" "Saved to $FILE and copied to clipboard"'';
-
   };
 
 }
