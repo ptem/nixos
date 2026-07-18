@@ -87,7 +87,7 @@
       };
 
       "image#album-art" = {
-        exec = "~/.dotfiles/hm/sway/waybar-albumart.sh";
+        exec = "~/.dotfiles/hm/sway/scripts/waybar-albumart.sh";
         on-click = "swaymsg '[app_id=\"feishin\"] focus'";
         size = 20;
         interval = 5;
@@ -176,6 +176,6 @@
   ];
 
   # can write the CSS for the waybar here or just path literal to file.
-  programs.waybar.style = builtins.readFile ./waybar-style.css;
+  programs.waybar.style = builtins.readFile ./style/waybar-style.css;
 
 }

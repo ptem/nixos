@@ -83,7 +83,7 @@
     ];
   };
 
-  xdg.configFile."gtklock/style.css".source = ./gtklock-style.css;
+  xdg.configFile."gtklock/style.css".source = ./style/gtklock-style.css;
 
   wayland.windowManager.sway.config = {
     colors = {

@@ -173,7 +173,7 @@ exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph
     #bindsym $mod+Shift+Delete exec swaynag -t warning -m 'erm??' -B 'erm...' 'echo test'
 
     # Mute mic [F13]. PTT handling is now in sys/triggerhappy.nix.
-    bindsym XF86Tools exec /home/bee/.dotfiles/hm/sway/mic-mute-toggle.sh
+    bindsym XF86Tools exec /home/bee/.dotfiles/hm/sway/scripts/mic-mute-toggle.sh
 
 
 ###
@@ -187,13 +187,13 @@ exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph
     #   mod+ctrl+amp+# = move window to workspace on other monitor
 
     # Swap focus between monitors (cross-monitor alt-tab, ig)
-    bindsym $mod+tab exec /home/bee/.dotfiles/hm/sway/swap-output-focus.sh
+    bindsym $mod+tab exec /home/bee/.dotfiles/hm/sway/scripts/swap-output-focus.sh
 
     # Swap focus between last-focused item. Item that was just focused becomes last-focused, naturally.
     bindsym $alt+$tab workspace back_and_forth
 
     # SCRIPT - Move focused container to designated workspace
-    set $workman /home/bee/.dotfiles/hm/sway/workspace-manager.sh
+    set $workman /home/bee/.dotfiles/hm/sway/scripts/workspace-manager.sh
 
 
     # focus nth workspace on same monitor
