@@ -5,7 +5,6 @@
 {
   imports = [
     # base setup items
-    ./audio.nix
     ./git.nix
     ./browsers.nix
     ./kitty.nix
@@ -15,7 +14,11 @@
 
     # all other
     ./social.nix
+
     ./gaming.nix
+    ./ffxiv.nix
+    ./minecraft.nix
+
     ./util.nix
     ./fastfetch.nix
 
@@ -24,6 +27,9 @@
 
     ./sway
     ./cursor.nix
+
+    ./gui.nix
+    ./fuzzel.nix
   ];
 
 }

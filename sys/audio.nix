@@ -6,7 +6,7 @@
     qpwgraph
   ];
 
-  # realtime prio for audio. surely this fixes crackling.
+  # realtime prio for audio.
   security.rtkit.enable = true;
 
   services.pipewire = {

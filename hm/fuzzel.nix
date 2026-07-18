@@ -1,5 +1,6 @@
-# hm/sway/fuzzel.nix
+# hm/fuzzel.nix
 {
+  config,
   pkgs,
   lib,
   ...
@@ -15,7 +16,16 @@
     main = {
       terminal = "${pkgs.kitty}/bin/kitty";
       layer = "overlay";
+      icon-theme = "Adwaita";
     };
+
+    colors =
+      let
+        colors = config.lib.stylix.colors;
+      in
+      {
+        background = lib.mkForce "#${colors.base01}ff";
+      };
 
   };
 

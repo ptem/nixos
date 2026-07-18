@@ -10,7 +10,6 @@
 
   imports = [
     ./waybar.nix
-    ./fuzzel.nix
   ];
 
   wayland.windowManager.sway = {
