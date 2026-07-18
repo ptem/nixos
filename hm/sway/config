@@ -77,7 +77,7 @@ exec wl-paste --watch cliphist store
 exec eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 exec dbus-update-activation-environment --systemd --all
 
-exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/hm/sway/patch.qpwgraph"
+exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/.extra/patch.qpwgraph"
 
 ###################################################################################################
 ###################################################################################################
