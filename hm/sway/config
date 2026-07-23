@@ -147,12 +147,11 @@ exec sh -c "sleep 3 && qpwgraph -m -a /home/bee/.dotfiles/.extra/patch.qpwgraph"
     bindsym $mod+XF86AudioLowerVolume exec playerctl play-pause
     bindsym $mod+XF86AudioMute exec playerctl previous
 
-    # Screenshots
+    # Screenshots + color picker
     bindsym $mod+$amp+s exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim_frz.png); wayfreeze & PID=$!; sleep .1; grim -g "$(slurp)" "$FILE" && wl-copy < "$FILE"; kill $PID'
-    bindsym Print exec bash -c 'FILE=$(xdg-user-dir PICTURES)/grim/$(date +%Y%m%d-%H%M%S_grim.png); grim -o DP-1 "$FILE" && wl-copy < "$FILE"'
+    bindsym $mod+$secmod+$amp+s exec hyprpicker -a
 
-    bindsym $mod+$amp+p exec hyprpicker -a
-
+    bindsym $mod+$amp+p output DP-2 toggle
     # === System/Session ===
     # Open Terminal
     bindsym $mod+Return exec $term

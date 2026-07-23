@@ -19,6 +19,7 @@
 
     # audio
     playerctl
+    pamixer
     #mpd
 
     # images
