@@ -95,6 +95,28 @@
           ];
         };
 
+        # Machine: Sierpinski
+        sierpinski = nixpkgs.libnixosSystem {
+          specialArgs = {
+            inherit inputs users superusers;
+            isHM = false;
+          };
+
+          modules = [
+            inputs.agenix.nixosModules.default
+
+            ./hosts/penrose/default.nix
+
+            {
+              nixpkgs.overlays = [
+                overlays.modifications
+                overlays.stable-packages
+              ];
+            }
+            { nixpkgs.config.allowUnfree = true; }
+          ];
+        };
+
       };
 
       # Standalone Home-Manager configuration entrypoint
@@ -102,14 +124,10 @@
       homeConfigurations = {
 
         "bee@penrose" = home-manager.lib.homeManagerConfiguration {
-
-          # requires pkgs instance
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
-
             overlays = [
-              # overlays.additions
               overlays.modifications
               overlays.stable-packages
             ];
@@ -123,10 +141,30 @@
 
           modules = [
             ./users/bee/default.nix
+            ./hm/desktop.nix
+
             stylix.homeModules.stylix
             ./style/stylix/default.nix
           ];
+        };
 
+        "bee@sierpinski" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+            overlays = [
+              overlays.modifications
+              overlays.stable-packages
+            ];
+          };
+
+          extraSpecialArgs = {
+            inherit inputs;
+            username = "bee";
+            isHM = true;
+          };
+
+          modules = [ ./users/bee/default.nix ];
         };
       };
 
