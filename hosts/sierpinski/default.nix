@@ -12,7 +12,7 @@
 {
   imports = [
     # hardware scan
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
 
     # system-level definitions
     ../../sys
@@ -33,6 +33,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages;
+ 
+  hardware.cpu.intel.updateMicrocode = true;
 
   services.openssh.enable = true;
 

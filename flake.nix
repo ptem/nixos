@@ -96,7 +96,8 @@
         };
 
         # Machine: Sierpinski
-        sierpinski = nixpkgs.libnixosSystem {
+        sierpinski = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
           specialArgs = {
             inherit inputs users superusers;
             isHM = false;
@@ -105,7 +106,7 @@
           modules = [
             inputs.agenix.nixosModules.default
 
-            ./hosts/penrose/default.nix
+            ./hosts/sierpinski/default.nix
 
             {
               nixpkgs.overlays = [

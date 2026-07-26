@@ -7,7 +7,7 @@
     ./git.nix
     ./helix.nix
     ./util.nix
-    ./fastfetch.nix
+    #./fastfetch.nix
   ];
 
 }

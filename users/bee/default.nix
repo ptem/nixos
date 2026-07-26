@@ -10,7 +10,7 @@
   home = {
     username = "bee";
     homeDirectory = "/home/bee";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 
   programs.home-manager.enable = true;
