@@ -4,9 +4,8 @@
 
 {
   imports = [
-    ./fonts.nix
-    ./peripheral.nix
-    ./file.nix
+    ./system.nix
+    ./network.nix
   ];
 
 }

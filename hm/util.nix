@@ -40,18 +40,12 @@
     nix-output-monitor # viz nix build logs + dep graphs
 
     # docs/manpages
-    bat
-    bat-extras.batdiff
-    bat-extras.batgrep
-    bat-extras.batman
     tldr
     delta
 
     # idk
-    fastfetch
-
-    # flatpaks
     flatpak
+    fastfetch
   ];
 
   # shell & aliases
@@ -65,7 +59,7 @@
     top = "btop";
     nfu = "git add . && nix flake update && git add flake.lock";
     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
-    hmr = "home-manager switch --flake ~/.dotfiles#bee@penrose";
+    hmr = "home-manager switch --flake ~/.dotfiles#$USER@$(hostname)";
     rebuild = "nrs && hmr";
   };
 

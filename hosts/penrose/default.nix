@@ -16,19 +16,10 @@
 
     # system-level definitions
     ../../sys
+    ../../sys/desktop.nix
     ../../sys/amdgpu.nix
-    ../../sys/audio.nix
-    ../../sys/peripheral.nix
 
     ../../sys/smb.nix
-    ../../sys/system.nix
-    ../../sys/steam.nix
-
-    ../../sys/network.nix
-
-    ../../sys/sway.nix
-    ../../sys/triggerhappy.nix
-
     ../../sys/musicprod.nix
   ];
 
