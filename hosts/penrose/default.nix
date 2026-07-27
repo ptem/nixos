@@ -19,7 +19,7 @@
     ../../sys/desktop.nix
     ../../sys/amdgpu.nix
 
-    ../../sys/smb.nix
+    ../../sys/samba.nix
     ../../sys/musicprod.nix
   ];
 
@@ -37,6 +37,8 @@
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     pkgs.docker-compose
+
+    pkgs.immich-go
   ];
 
   services.openssh.enable = true;

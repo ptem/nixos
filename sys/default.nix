@@ -6,6 +6,6 @@
   imports = [
     ./system.nix
     ./network.nix
+    ./restic.nix
   ];
-
 }

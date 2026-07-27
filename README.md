@@ -26,11 +26,13 @@ _A word of caution_: I am an amateur at NixOS so there are almost certainly issu
 
 - `overlays/` Package modifications. Defines custom package overlays to add, modify, or inject packages into the `nixpkgs` instance.
 
-- `secrets/secrets.nix` Secret management (using [agenix](https://github.com/ryantm/agenix)). Contains files which define (public) keys and agenix-encrypted `.age` outputs that are decrypted at runtime. Private keys are not stored here. Still don't really like this on principle as using requires tracking changes, todo move to anything else.
+- `secrets/` Secret management (using [agenix](https://github.com/ryantm/agenix)). Contains files which define (public) keys and encrypted `.age` outputs, decryped at runtime.
 
 - `style/` Theming and such. contains main stylix config, any personally defined themes, wallpapers, etc.
 
 - `sys/` System modules. These are modules installed machine-wide on machines which opt in to them in `hosts/`.
+
+- `sys/services` Services I run on my network. Realistically these should just sorta be in `sys/` but I like some semantic separation between "things I'm using" and "things I'm sharing"
 
 - `users/` Home Manager entrypoints. Contains user configuration and imports user-level modules from `sys/`.
 

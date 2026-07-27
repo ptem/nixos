@@ -56,6 +56,15 @@
 
       export HOME_MANAGER_CONFIG="/home/bee/.dotfiles/users/bee/default.nix"
     '';
+
+    shellAliases = {
+      ssh = "kitty +kitten ssh";
+    };
+
+  };
+
+  programs.zsh.shellAliases = {
+    ssh = "kitty +kitten ssh";
   };
 
 }

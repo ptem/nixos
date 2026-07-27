@@ -1,4 +1,4 @@
-# nix/smb.nix
+# sys/samba.nix
 {
   pkgs,
   config,
@@ -10,15 +10,15 @@
 {
   environment.systemPackages = [ pkgs.cifs-utils ];
 
-  age.secrets.smb-secrets = {
-    file = ../secrets/smb-secrets.age;
+  age.secrets.samba = {
+    file = ../secrets/samba.age;
   };
 
   fileSystems."/mnt/music" = {
-    device = "//proxmox-home/music";
+    device = "//sierpinski/music";
     fsType = "cifs";
     options = [
-      "credentials=${config.age.secrets.smb-secrets.path}"
+      "credentials=${config.age.secrets.samba.path}"
       "uid=1000" # TODO: below
       "gid=100" # TODO: define local music storage group instead and apply to users.
       "_netdev"
@@ -33,10 +33,10 @@
   };
 
   fileSystems."/mnt/store" = {
-    device = "//proxmox-home/store";
+    device = "//sierpinski/store";
     fsType = "cifs";
     options = [
-      "credentials=${config.age.secrets.smb-secrets.path}"
+      "credentials=${config.age.secrets.samba.path}"
       "uid=1000" # TODO: above
       "gid=100" # TODO: above
       "_netdev"

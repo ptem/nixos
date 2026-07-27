@@ -7,6 +7,7 @@
     ./git.nix
     ./helix.nix
     ./util.nix
+    ./ssh.nix
     #./fastfetch.nix
   ];
 

@@ -1,13 +1,14 @@
 # hm/helix.nix
 {
   pkgs,
+  lib,
   ...
 }:
 
-# let
-#   # my defined themes located in ~/.dotfiles/style/themes/[themeName]/[themeName]-helix.nix
-#   themeName = "EULR";
-# in
+let
+  # my defined themes located in ~/.dotfiles/style/themes/[themeName]/[themeName]-helix.nix
+  themeName = lib.mkDefault "everblush";
+in
 {
   programs.helix = {
     enable = true;
@@ -120,7 +121,7 @@
       };
     };
 
-    # settings.theme = themeName;
+    settings.theme = themeName;
     # themes = import ../style/themes/${themeName}/${themeName}-helix.nix;
   };
 }
