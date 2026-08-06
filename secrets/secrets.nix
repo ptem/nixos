@@ -18,4 +18,10 @@ in
     sierpinski
     sierpinski-rt
   ];
+  "navidrome.age".publicKeys = [
+    bee
+    penrose
+    sierpinski
+    sierpinski-rt
+  ];
 }

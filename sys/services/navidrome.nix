@@ -2,8 +2,13 @@
 { config, pkgs, ... }:
 
 {
+  age.secrets.navidrome = {
+    file = ../../secrets/navidrome.age;
+  };
+
   services.navidrome = {
     enable = true;
+    environmentFile = config.age.secrets.navidrome.path;
     settings = {
       MusicFolder = "/mnt/music/music";
       EnableTranscodingConfig = true;
@@ -12,6 +17,7 @@
       LyricsPriority = ".lrc,.txt,embedded";
       PluginsEnabled = true;
       Address = "0.0.0.0";
+      LastFM.Enabled = true;
 
       Scanner = {
         Schedule = "@every 30m";
