@@ -25,20 +25,20 @@
     };
   };
 
-  xdg.desktopEntries."vesktop-wlr" = {
-    name = "Vesktop (wl/wlr)";
-    exec = "vesktop --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland %U";
-    icon = "vesktop";
-    terminal = false;
-    type = "Application";
-    categories = [
-      "Network"
-      "InstantMessaging"
-      "Chat"
-    ];
-    settings = {
-      Keywords = "vesktop;discord;voice;chat;wayland;wlr;";
-    };
-  };
+  # xdg.desktopEntries."vesktop-wlr" = {
+  #   name = "Vesktop (wl/wlr)";
+  #   exec = "vesktop --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations %U";
+  #   icon = "vesktop";
+  #   terminal = false;
+  #   type = "Application";
+  #   categories = [
+  #     "Network"
+  #     "InstantMessaging"
+  #     "Chat"
+  #   ];
+  #   settings = {
+  #     Keywords = "vesktop;discord;voice;chat;wayland;wlr;";
+  #   };
+  # };
 
 }
