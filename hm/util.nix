@@ -46,6 +46,8 @@
     # idk
     flatpak
     fastfetch
+
+    glow
   ];
 
   # shell & aliases

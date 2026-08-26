@@ -9,6 +9,7 @@
     ./util.nix
     ./ssh.nix
     #./fastfetch.nix
+    ./file.nix
   ];
 
 }
